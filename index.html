@@ -275,7 +275,7 @@
   </style>
 </head>
 <body>
-  <button id="likeBtn" class="like-btn">
+  <button id="likeBtn" class="like-btn" disabled>
     <i class="fas fa-thumbs-up"></i> 
     Curtir <span id="likeCount" class="like-count">0</span>
   </button>
@@ -305,6 +305,7 @@
     signInAnonymously(auth)
       .then(() => {
         console.log("Usuário autenticado anonimamente");
+        document.getElementById('likeBtn').disabled = false; // Habilita o botão após autenticação
       })
       .catch((error) => {
         console.error("Erro na autenticação:", error);
