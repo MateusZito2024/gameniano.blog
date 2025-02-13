@@ -299,12 +299,12 @@
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
 
-    // Gerando ID único para o dispositivo usando sessionStorage (mais persistente que localStorage)
-    const userId = sessionStorage.getItem("userId") || Date.now(); // Gerando um ID único
-    sessionStorage.setItem("userId", userId);
+    // Gerando ID único para o dispositivo usando localStorage
+    const deviceId = localStorage.getItem("deviceId") || Date.now(); // Gerando ID único
+    localStorage.setItem("deviceId", deviceId);
 
-    // Verificando se o usuário já curtiu
-    if (sessionStorage.getItem("hasLiked") === "true") {
+    // Verificando se o dispositivo já curtiu
+    if (localStorage.getItem("hasLiked") === "true") {
       document.getElementById("likeBtn").disabled = true;
     }
 
@@ -314,18 +314,29 @@
 
     // Função para registrar a curtida
     function handleLike() {
-      // Marcando que o dispositivo já curtiu
-      sessionStorage.setItem("hasLiked", "true");
-      likeButton.disabled = true;
-
-      // Atualizando as curtidas no Firebase
-      const likeCountRef = ref(database, 'likes/total');
-      get(likeCountRef).then((snapshot) => {
+      const userLikeRef = ref(database, `likes/hasLiked/${deviceId}`);
+      get(userLikeRef).then((snapshot) => {
         if (snapshot.exists()) {
-          const currentLikes = snapshot.val();
-          set(likeCountRef, currentLikes + 1); // Incrementando as curtidas no Firebase
+          // Se o dispositivo já curtiu, não faz nada
+          console.log("Este dispositivo já curtiu!");
         } else {
-          set(likeCountRef, 1); // Iniciando com 1 curtida se não houver dados
+          // Se o dispositivo ainda não curtiu, registramos a curtida
+          set(userLikeRef, true); // Marca que esse dispositivo já curtiu
+
+          // Atualizando as curtidas no Firebase
+          const likeCountRef = ref(database, 'likes/total');
+          get(likeCountRef).then((snapshot) => {
+            if (snapshot.exists()) {
+              const currentLikes = snapshot.val();
+              set(likeCountRef, currentLikes + 1); // Incrementando as curtidas no Firebase
+            } else {
+              set(likeCountRef, 1); // Iniciando com 1 curtida se não houver dados
+            }
+          });
+
+          // Marcando que o dispositivo já curtiu localmente
+          localStorage.setItem("hasLiked", "true");
+          likeButton.disabled = true;
         }
       });
     }
@@ -343,3 +354,4 @@
   </script>
 </body>
 </html>
+
