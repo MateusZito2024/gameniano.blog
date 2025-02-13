@@ -299,12 +299,13 @@
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
 
-    // Gerando ID único para o dispositivo usando localStorage
-    const deviceId = localStorage.getItem("deviceId") || Date.now(); // Gerando ID único
-    localStorage.setItem("deviceId", deviceId);
+    // Gerar ID único baseado no navegador/dispositivo (não é perfeito, mas funciona para isso)
+    const deviceId = btoa(navigator.userAgent + Date.now()); // Gerando ID único com userAgent e timestamp
+    localStorage.setItem("deviceId", deviceId);  // Armazenando localmente no navegador
 
     // Verificando se o dispositivo já curtiu
-    if (localStorage.getItem("hasLiked") === "true") {
+    const hasLiked = localStorage.getItem("hasLiked");
+    if (hasLiked === "true") {
       document.getElementById("likeBtn").disabled = true;
     }
 
