@@ -314,20 +314,34 @@
     const likeButton = document.getElementById("likeBtn");
     const likeCountDisplay = document.getElementById("likeCount");
 
-    // Função para verificar se o usuário já curtiu
+    // Função para pegar o ID do usuário anônimo
+    function getUserId() {
+      const user = auth.currentUser;
+      if (user) {
+        return user.uid; // ID único gerado pelo Firebase
+      }
+      return null;
+    }
+
+    // Função para verificar se o dispositivo já curtiu
     function handleLike() {
-      const userId = auth.currentUser.uid; // Pegando o ID único do usuário autenticado
+      const userId = getUserId(); // Pegando o ID único do usuário
+
+      if (!userId) {
+        alert("Erro: Não foi possível identificar o usuário.");
+        return;
+      }
 
       // Referência para verificar se o usuário já curtiu
       const userLikeRef = ref(database, `likes/hasLiked/${userId}`);
 
       get(userLikeRef).then((snapshot) => {
         if (snapshot.exists()) {
-          // Se o dispositivo já curtiu, não faz nada
+          // Se o usuário já curtiu, desabilita o botão
           console.log("Este dispositivo já curtiu!");
           likeButton.disabled = true;
         } else {
-          // Se o dispositivo ainda não curtiu, registramos a curtida
+          // Se o usuário ainda não curtiu, registramos a curtida
           set(userLikeRef, true).then(() => {
             // Atualizando as curtidas no Firebase
             const likeCountRef = ref(database, 'likes/total');
@@ -342,13 +356,13 @@
               console.error("Erro ao atualizar contagem de curtidas:", error);
             });
           }).catch((error) => {
-            console.error("Erro ao registrar curtida do usuário:", error);
+            console.error("Erro ao registrar curtida do dispositivo:", error);
           });
 
           likeButton.disabled = true;
         }
       }).catch((error) => {
-        console.error("Erro ao verificar se o usuário já curtiu:", error);
+        console.error("Erro ao verificar se o dispositivo já curtiu:", error);
       });
     }
 
