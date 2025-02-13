@@ -7,18 +7,54 @@
     <meta name="keywords" content="Gameniano, gameplays, jogos de terror, lives, YouTube, Twitch, criador de conteúdo">
     <title>Gameniano</title>
     <style>
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .content, .sidebar {
-                width: 90%;
-            }
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
         }
 
-        /* Estilo do botão de Inscreva-se */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px;
+        }
+
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px;
+        }
+
+        .post {
+            margin-bottom: 20px;
+        }
+
         .subscribe-button {
             color: #fff;
             padding: 10px 20px;
@@ -29,68 +65,89 @@
             cursor: pointer;
         }
 
-        /* Estilo do botão da Twitch */
-        .twitch-button {
-            background-color: #9146ff;
-            color: #fff;
-        }
-
-        /* Estilo do botão do YouTube */
         .youtube-button {
             background-color: #ff0000;
-            color: #fff;
         }
 
-        /* Estilo do botão do TikTok */
-        .tiktok-button {
-            background-color: #69C9D0;
-            color: white;
-        }
-
-        /* Estilo do botão do Kwai */
         .kwai-button {
             background-color: #FFA500;
-            color: white;
+        }
+
+        .tiktok-button {
+            background-color: #69C9D0;
+        }
+
+        .twitch-button {
+            background-color: #9146ff;
+        }
+
+        /* Responsividade para dispositivos móveis */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 24px;
+            }
+
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .content, .sidebar {
+                width: 90%;
+                margin: 10px 0;
+            }
+
+            iframe {
+                width: 100%;
+                height: auto;
+            }
+
+            .post {
+                padding: 15px;
+                background: #f9f9f9;
+            }
+
+            .gameniano-milestone, .sidebar {
+                width: 100%;
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <header style="text-align: center">
+    <header>
         <h1>Gameniano</h1>
     </header>
     
-    <div class="container" style="display: flex; justify-content: center; align-items: flex-start; margin-top: 20px;">
-        <div class="content" style="flex: 2; padding: 20px; background: white; border-radius: 5px; text-align: center;">
+    <div class="container">
+        <div class="content">
             <div class="post">
                 <h2>Última Gameplay</h2>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/fP9o4Wfl6zY" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/fP9o4Wfl6zY" frameborder="0" allowfullscreen></iframe>
                 <p>Confira minha última gameplay cheia de sustos e adrenalina!</p>
                 <a href="https://www.youtube.com/@Gameniano" class="subscribe-button youtube-button">Inscreva-se no meu canal!</a>
             </div>
             <div class="post">
                 <h2>Vídeo no Kwai</h2>
-                <iframe src="https://www.kwai.com/embed/5195333750427505304" width="560" height="315" frameborder="0"></iframe>
+                <iframe src="https://www.kwai.com/embed/5195333750427505304" frameborder="0"></iframe>
                 <p>Confira esse vídeo do meu Kwai com conteúdo exclusivo!</p>
                 <a href="https://www.kwai.com/@gameniano" class="subscribe-button kwai-button">Seguir no Kwai</a>
             </div>
             <div class="post">
                 <h2>Vídeo no TikTok</h2>
-                <iframe src="https://www.tiktok.com/embed/7470276746894380294" width="560" height="315" frameborder="0"></iframe>
+                <iframe src="https://www.tiktok.com/embed/7470276746894380294" frameborder="0"></iframe>
                 <p>Confira esse vídeo do meu TikTok com conteúdo exclusivo!</p>
                 <a href="https://www.tiktok.com/@gameniano" class="subscribe-button tiktok-button">Seguir no TikTok</a>
             </div>
-
             <div class="post" style="background: #f0f0f0; border-radius: 5px; padding: 15px; margin-top: 20px;">
                 <h2>Comentários</h2>
                 <div class="comment" style="margin-bottom: 10px; padding: 10px 20px; background-color: #f0f8ff; border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 90%; margin-left: 5%; position: relative;">
                     <p style="font-weight: bold;">João:</p>
                     <p>Adorei a gameplay, estou apavorado hahaha!</p>
-                    <div style="position: absolute; bottom: -10px; left: 10px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #f0f8ff;"></div>
                 </div>
                 <div class="comment" style="margin-bottom: 10px; padding: 10px 20px; background-color: #f0f8ff; border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 90%; margin-left: 5%; position: relative;">
                     <p style="font-weight: bold;">Ana:</p>
                     <p>Sempre me divirto com seus vídeos! Continue assim.</p>
-                    <div style="position: absolute; bottom: -10px; left: 10px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #f0f8ff;"></div>
                 </div>
                 <a href="https://www.youtube.com/watch?v=fP9o4Wfl6zY" target="_blank" style="color: #007bff; font-weight: bold; text-decoration: none;">Ver mais comentários</a>
             </div>
@@ -98,363 +155,20 @@
             <div class="post" style="background: #e8f8e8; border-radius: 5px; padding: 15px; margin-top: 20px;">
                 <h2>Notícias e Atualizações</h2>
                 <p>Agora todos os dias tem Live na Twitch às 21:00! Fique ligado para as novidades.</p>
-                <p>Acompanhe para não perder as lives!</p>
                 <a href="https://www.twitch.tv/gameniano_" class="subscribe-button twitch-button">Inscreva-se na minha Twitch!</a>
             </div>
-        
-<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 20px; position: absolute; top: 20px; left: 20px; right: 20px;">
-    <!-- Conteúdo principal -->
-    <div class="gameniano-milestone" style="background: #ffffff; color: #333; padding: 30px; border-radius: 15px; font-family: 'Arial', sans-serif; width: 350px; box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out; border: 1px solid #f1f1f1;">
-        <h2 style="font-size: 22px; font-weight: bold; color: #333; margin-bottom: 15px; line-height: 1.4;">Ultrapassando <span class="highlight" style="color: #c00;">140 mil</span> de assinantes do YouTube, graças a você</h2>
-        <p class="author" style="font-size: 14px; color: #777; margin-bottom: 20px;">Por <strong>Sarah Alvares</strong>, <a href="https://www.mackenzie.br" target="_blank" style="color: #c00; text-decoration: none;">Formada em Jornalismo na Universidade Presbiteriana Mackenzie</a> - 13 de fevereiro de 2025</p>
-
-        <div class="social-links" style="margin: 20px 0;">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.gameniano.com.br" target="_blank" class="social-icon" style="font-size: 14px; margin-right: 20px; text-decoration: none; color: #fff; background-color: #3b5998; padding: 12px 20px; border-radius: 8px; transition: background-color 0.3s ease;">Compartilhar no Facebook</a>
-            <a href="#" onclick="copyLink(); return false;" class="social-icon" style="font-size: 14px; text-decoration: none; color: #fff; background-color: #c00; padding: 12px 20px; border-radius: 8px; transition: background-color 0.3s ease;">Copiar link</a>
         </div>
 
-        <p style="font-size: 16px; line-height: 1.6;">Estamos felizes em compartilhar que ultrapassamos <strong>140 mil assinantes</strong> no canal <a href="https://www.youtube.com/@Gameniano" target="_blank" style="color: #c00;">Gameniano</a> no YouTube.</p>
-
-        <p style="font-size: 16px; line-height: 1.6;">Desde 2015, buscamos oferecer conteúdos autênticos e envolventes. Antes do YouTube, Gameniano explorou diferentes caminhos na <a href="#" style="color: #c00;">música</a>, <a href="#" style="color: #c00;">arte</a> e no <a href="#" style="color: #c00;">empreendedorismo</a>, mas foi no YouTube que encontrou sua verdadeira vocação.</p>
-
-        <p style="font-size: 16px; line-height: 1.6;">Nosso canal se tornou um espaço para apaixonados por jogos, oferecendo gameplays imersivas e recomendações personalizadas. A comunidade tem sido essencial, sugerindo jogos nos <a href="https://www.twitch.tv" target="_blank" style="color: #c00;">comentários da Twitch</a> e no <a href="https://www.youtube.com/c/Gameniano" target="_blank" style="color: #c00;">YouTube</a>. Isso nos permitiu expandir nosso alcance e refinar a qualidade do conteúdo.</p>
-
-        <h3 style="font-size: 18px; color: #333; margin-top: 25px;">O que mudou recentemente</h3>
-        <p style="font-size: 16px; line-height: 1.6;">No último ano, aprimoramos nossa produção com:</p>
-        <ul style="list-style-type: disc; padding-left: 20px; font-size: 16px; line-height: 1.6;">
-            <li>📹 <strong>Melhoria na qualidade das gameplays</strong></li>
-            <li>🎥 <strong>Atualização de equipamentos de gravação</strong></li>
-            <li>🎙 <strong>Áudio profissional com novos microfones</strong></li>
-        </ul>
-
-        <p style="font-size: 16px; line-height: 1.6;">Nosso compromisso é continuar entregando conteúdos envolventes e de alta qualidade. O <a href="https://www.youtube.com" target="_blank" style="color: #c00;">YouTube</a> nos proporciona uma plataforma para fortalecer essa comunidade incrível.</p>
-
-        <blockquote style="background: #f4f4f4; padding: 20px; border-left: 5px solid #c00; font-style: italic; margin-top: 30px; font-size: 16px; line-height: 1.6;">
-            "Desde pequeno, Gameniano sonhava com uma comunidade de mais de 100 mil assinantes. Hoje, somos gratos a cada um de vocês pelo apoio!"
-        </blockquote>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Quem é o Gameniano?</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gameniano.png/600px-Gameniano.png?20250212073706" alt="Gameniano" style="width: 120px; border-radius: 50%; margin-bottom: 20px;">
+            <p>Gameniano é um criador de conteúdo brasileiro, com destaque no YouTube, onde cria gameplays de jogos de terror. Ele também compartilha seus conteúdos no TikTok, Twitch e outras plataformas.</p>
+        </aside>
     </div>
-
-    <!-- Sidebar -->
-    <aside class="sidebar" style="background: #ffffff; border-radius: 15px; text-align: center; width: 350px; padding: 30px; box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1); border: 1px solid #f1f1f1;">
-        <h3 style="font-size: 20px; color: #333; margin-bottom: 20px;">Quem é o Gameniano?</h3>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gameniano.png/600px-Gameniano.png?20250212073706" alt="Gameniano" class="profile-img" style="width: 120px; border-radius: 50%; margin-bottom: 20px;">
-        <p style="font-size: 16px; color: #333; line-height: 1.6;">Gameniano é um criador de conteúdo brasileiro, nascido em 11 de julho de 2000, com destaque no YouTube, onde cria gameplays de jogos de terror. Ele também compartilha seus conteúdos no TikTok, Twitch e outras plataformas, com foco em entretenimento e interação com seus fãs. Residente de São Paulo, além de criador de conteúdo e streamer, ele também atua como marketer.</p>
-        <h3 style="font-size: 20px; color: #333; margin-top: 25px;">Siga-me</h3>
-        <p style="font-size: 16px; line-height: 1.6;">
-            <a href="https://www.youtube.com/@Gameniano" style="color: #c00; text-decoration: none;">YouTube</a> |
-            <a href="https://www.tiktok.com/@gameniano" style="color: #c00; text-decoration: none;">TikTok</a> |
-            <a href="https://www.twitch.tv/gameniano_" style="color: #c00; text-decoration: none;">Twitch</a> |
-            <a href="https://kick.com/gameniano" style="color: #c00; text-decoration: none;">Kick</a>
-        </p>
-        <!-- Adicionando imagem e botão do Facebook -->
-        <img src="https://graph.facebook.com/gameniano/picture?type=large" alt="Facebook Profile" style="width: 120px; border-radius: 50%; margin-top: 20px;">
-        <br>
-        <a href="https://www.facebook.com/gameniano" class="subscribe-button" style="background-color: #3b5998; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; margin-top: 20px;">Seguir no Facebook</a>
-    </aside>
-</div>
-
-<script>
-    function copyLink() {
-        navigator.clipboard.writeText("https://www.gameniano.com.br");
-        alert("Link copiado!");
-    }
-</script>
-
-
 
     <footer style="text-align: center; padding: 10px; background: #222; color: white;">
         <p>&copy; 2025 Gameniano - Todos os direitos reservados.</p>
     </footer>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Botão de Curtir</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
-    /* Estilos para o botão */
-    .like-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #FF4500;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      transition: background-color 0.3s ease;
-      min-width: 120px;
-      text-align: center;
-      animation: shake 1s infinite alternate;
-    }
-
-    .like-btn:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-
-    .like-btn i {
-      margin-right: 8px;
-    }
-
-    .like-count {
-      font-size: 16px;
-    }
-
-    /* Animação de tremor */
-    @keyframes shake {
-      0% {
-        transform: translateX(0);
-      }
-      25% {
-        transform: translateX(-5px);
-      }
-      50% {
-        transform: translateX(5px);
-      }
-      75% {
-        transform: translateX(-5px);
-      }
-      100% {
-        transform: translateX(5px);
-      }
-    }
-
-    /* Efeito de "curtidas saindo" */
-    .like-particles {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-      z-index: 500;
-    }
-
-    .like-particle {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: #FF4500;
-      border-radius: 50%;
-      animation: particleAnim 1s ease-out forwards;
-    }
-
-    @keyframes particleAnim {
-      0% {
-        transform: scale(1) translate(0, 0);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(0) translate(0, -30px); /* Partículas subindo */
-        opacity: 0;
-      }
-    }
-  </style>
-</head>
-<body>
-  <button id="likeBtn" class="like-btn">
-    <i class="fas fa-thumbs-up"></i> 
-    Curtir <span id="likeCount" class="like-count">0</span>
-  </button>
-
-  <div id="likeParticles" class="like-particles"></div>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-    import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
-
-    // Configuração do Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyAB7D9_tOjAZqpomQ1ldpkM-PPxzvukMGU",
-      authDomain: "curtirbotao.firebaseapp.com",
-      databaseURL: "https://curtirbotao-default-rtdb.firebaseio.com",
-      projectId: "curtirbotao",
-      storageBucket: "curtirbotao.firebasestorage.app",
-      messagingSenderId: "1090024500334",
-      appId: "1:1090024500334:web:a824a9bc42cc5535070a7f"
-    };
-
-    // Inicializando o Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-
-    // Referência ao botão e à contagem de curtidas
-    const likeButton = document.getElementById("likeBtn");
-    const likeCountDisplay = document.getElementById("likeCount");
-    const likeParticles = document.getElementById("likeParticles");
-
-    // Função para criar partículas de "likes" saindo do botão
-    function createLikeParticles() {
-      for (let i = 0; i < 5; i++) { // Gera 5 partículas
-        const particle = document.createElement("div");
-        particle.classList.add("like-particle");
-        particle.style.animationDelay = `${Math.random() * 0.5}s`; // Delay aleatório
-        const size = Math.random() * 10 + 5;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-
-        likeParticles.appendChild(particle);
-
-        // Remove a partícula depois da animação
-        setTimeout(() => {
-          particle.remove();
-        }, 1000);
-      }
-    }
-
-    // Função para verificar se o dispositivo já curtiu
-    function handleLike() {
-      if (localStorage.getItem("hasLiked")) {
-        alert("Você já curtiu este botão nesta sessão.");
-        return;
-      }
-
-      // Registrando a curtida no Firebase
-      const likeCountRef = ref(database, 'likes/total');
-      get(likeCountRef).then((snapshot) => {
-        if (snapshot.exists()) {
-          const currentLikes = snapshot.val();
-          set(likeCountRef, currentLikes + 1); // Incrementando as curtidas no Firebase
-        } else {
-          set(likeCountRef, 1); // Iniciando com 1 curtida se não houver dados
-        }
-      }).catch((error) => {
-        console.error("Erro ao atualizar contagem de curtidas:", error);
-      });
-
-      // Marcando que o dispositivo já curtiu nesta sessão
-      localStorage.setItem("hasLiked", "true");
-
-      // Desabilitando o botão após a curtida e deixando cinza
-      likeButton.disabled = true;
-      likeButton.style.backgroundColor = '#ccc';
-      
-      // Criando as partículas de "likes" saindo
-      createLikeParticles();
-    }
-
-    // Adicionando evento de clique ao botão
-    likeButton.addEventListener("click", handleLike);
-
-    // Atualizando o número de curtidas em tempo real
-    const likeCountRef = ref(database, 'likes/total');
-    onValue(likeCountRef, (snapshot) => {
-      if (snapshot.exists()) {
-        likeCountDisplay.innerText = snapshot.val(); // Atualizando o número de curtidas exibido
-      }
-    });
-
-    // Verifica se o botão já foi desabilitado após a atualização da página
-    if (localStorage.getItem("hasLiked")) {
-      likeButton.disabled = true;
-      likeButton.style.backgroundColor = '#ccc'; // Fica cinza
-    }
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contador de Visitas</title>
-  <style>
-    /* Estilo do contador de visitas */
-    #visitCounter {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      font-size: 24px;
-      color: #333;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      animation: bounce 2s infinite;
-    }
-
-    #visitCount {
-      margin-left: 10px;
-    }
-
-    /* Animação de "bounce" (efeito borrachudo) */
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-  </style>
-</head>
-<body>
-  <div id="visitCounter">
-    Visitas: <span id="visitCount">0</span>
-  </div>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-    import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
-
-    // Configuração do Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyAB7D9_tOjAZqpomQ1ldpkM-PPxzvukMGU",
-      authDomain: "curtirbotao.firebaseapp.com",
-      databaseURL: "https://curtirbotao-default-rtdb.firebaseio.com",
-      projectId: "curtirbotao",
-      storageBucket: "curtirbotao.firebasestorage.app",
-      messagingSenderId: "1090024500334",
-      appId: "1:1090024500334:web:a824a9bc42cc5535070a7f"
-    };
-
-    // Inicializando o Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-
-    const visitCountDisplay = document.getElementById("visitCount");
-
-    // Função para verificar e registrar uma visita
-    function handleVisit() {
-      if (localStorage.getItem("hasVisited")) {
-        return; // Se o dispositivo já visitou, não conta novamente
-      }
-
-      // Registrando visita no Firebase
-      const visitCountRef = ref(database, 'visits/total');
-      get(visitCountRef).then((snapshot) => {
-        if (snapshot.exists()) {
-          const currentVisits = snapshot.val();
-          set(visitCountRef, currentVisits + 1); // Incrementando as visitas no Firebase
-        } else {
-          set(visitCountRef, 1); // Iniciando com 1 visita se não houver dados
-        }
-      }).catch((error) => {
-        console.error("Erro ao atualizar contagem de visitas:", error);
-      });
-
-      // Marcando que o dispositivo já visitou
-      localStorage.setItem("hasVisited", "true");
-    }
-
-    // Chamando a função para contar a visita
-    handleVisit();
-
-    // Atualizando o número de visitas em tempo real
-    const visitCountRef = ref(database, 'visits/total');
-    onValue(visitCountRef, (snapshot) => {
-      if (snapshot.exists()) {
-        visitCountDisplay.innerText = snapshot.val(); // Atualizando o número de visitas exibido
-      }
-    });
-  </script>
 </body>
 </html>
