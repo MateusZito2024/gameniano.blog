@@ -301,7 +301,7 @@
     const database = getDatabase(app);
     const auth = getAuth(app);
 
-    // Função de autenticação anônima
+    // Função para inicializar o Firebase Authentication
     signInAnonymously(auth)
       .then(() => {
         console.log("Usuário autenticado anonimamente");
@@ -314,9 +314,9 @@
     const likeButton = document.getElementById("likeBtn");
     const likeCountDisplay = document.getElementById("likeCount");
 
-    // Verificando se o dispositivo já curtiu
+    // Função para verificar se o usuário já curtiu
     function handleLike() {
-      const userId = auth.currentUser.uid; // Pegando ID único do usuário autenticado
+      const userId = auth.currentUser.uid; // Pegando o ID único do usuário autenticado
 
       // Referência para verificar se o usuário já curtiu
       const userLikeRef = ref(database, `likes/hasLiked/${userId}`);
@@ -328,21 +328,27 @@
           likeButton.disabled = true;
         } else {
           // Se o dispositivo ainda não curtiu, registramos a curtida
-          set(userLikeRef, true); // Marca que esse dispositivo já curtiu
-
-          // Atualizando as curtidas no Firebase
-          const likeCountRef = ref(database, 'likes/total');
-          get(likeCountRef).then((snapshot) => {
-            if (snapshot.exists()) {
-              const currentLikes = snapshot.val();
-              set(likeCountRef, currentLikes + 1); // Incrementando as curtidas no Firebase
-            } else {
-              set(likeCountRef, 1); // Iniciando com 1 curtida se não houver dados
-            }
+          set(userLikeRef, true).then(() => {
+            // Atualizando as curtidas no Firebase
+            const likeCountRef = ref(database, 'likes/total');
+            get(likeCountRef).then((snapshot) => {
+              if (snapshot.exists()) {
+                const currentLikes = snapshot.val();
+                set(likeCountRef, currentLikes + 1); // Incrementando as curtidas no Firebase
+              } else {
+                set(likeCountRef, 1); // Iniciando com 1 curtida se não houver dados
+              }
+            }).catch((error) => {
+              console.error("Erro ao atualizar contagem de curtidas:", error);
+            });
+          }).catch((error) => {
+            console.error("Erro ao registrar curtida do usuário:", error);
           });
 
           likeButton.disabled = true;
         }
+      }).catch((error) => {
+        console.error("Erro ao verificar se o usuário já curtiu:", error);
       });
     }
 
