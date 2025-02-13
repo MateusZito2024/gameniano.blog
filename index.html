@@ -306,8 +306,8 @@
 
     .like-particle {
       position: absolute;
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       background-color: #FF4500;
       border-radius: 50%;
       animation: particleAnim 1s ease-out forwards;
@@ -319,7 +319,7 @@
         opacity: 1;
       }
       100% {
-        transform: scale(0) translate(0, -60px); /* Partículas subindo */
+        transform: scale(0) translate(0, -30px); /* Partículas subindo */
         opacity: 0;
       }
     }
@@ -359,22 +359,13 @@
 
     // Função para criar partículas de "likes" saindo do botão
     function createLikeParticles() {
-      const particlesCount = 20; // Aumentando o número de partículas
-      for (let i = 0; i < particlesCount; i++) { // Gera 20 partículas
+      for (let i = 0; i < 5; i++) { // Gera 5 partículas
         const particle = document.createElement("div");
         particle.classList.add("like-particle");
-
-        // Criando um atraso aleatório para as partículas
-        particle.style.animationDelay = `${Math.random() * 0.5}s`;
-        
-        // Partículas com tamanhos aleatórios
-        const size = Math.random() * 10 + 8;
+        particle.style.animationDelay = `${Math.random() * 0.5}s`; // Delay aleatório
+        const size = Math.random() * 10 + 5;
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
-
-        // Movimento aleatório para simular partículas saindo em direções variadas
-        const direction = Math.random() * 20 - 10; // Criando um pequeno desvio
-        particle.style.transform = `translateX(${direction}px)`;
 
         likeParticles.appendChild(particle);
 
@@ -435,6 +426,7 @@
   </script>
 </body>
 </html>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -559,13 +551,19 @@
 
     // Função para incrementar o contador de visitas
     function incrementVisitCount() {
-      const visitCountRef = ref(database, 'visits/total');
-      get(visitCountRef).then((snapshot) => {
-        let currentVisitCount = snapshot.exists() ? snapshot.val() : 0;
-        set(visitCountRef, currentVisitCount + 1); // Incrementando as visitas no Firebase
-      }).catch((error) => {
-        console.error("Erro ao atualizar contagem de visitas:", error);
-      });
+      // Verifica se o dispositivo já contou a visita
+      if (!localStorage.getItem("hasVisited")) {
+        const visitCountRef = ref(database, 'visits/total');
+        get(visitCountRef).then((snapshot) => {
+          let currentVisitCount = snapshot.exists() ? snapshot.val() : 0;
+          set(visitCountRef, currentVisitCount + 1); // Incrementando as visitas no Firebase
+        }).catch((error) => {
+          console.error("Erro ao atualizar contagem de visitas:", error);
+        });
+
+        // Marca que o dispositivo já contou a visita
+        localStorage.setItem("hasVisited", "true");
+      }
     }
 
     // Atualizando o número de visitas em tempo real
@@ -576,7 +574,7 @@
       }
     });
 
-    // Chamar a função de incremento quando o usuário acessar a página
+    // Chama a função para incrementar as visitas ao carregar a página
     incrementVisitCount();
 
     // Referências ao botão de curtir
@@ -639,3 +637,4 @@
   </script>
 </body>
 </html>
+
