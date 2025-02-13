@@ -418,12 +418,11 @@
       }
     });
 
-    // Habilitando o botão de curtida
-    if (!localStorage.getItem("hasLiked")) {
-      likeButton.disabled = false;
+    // Verifica se o botão já foi desabilitado após a atualização da página
+    if (localStorage.getItem("hasLiked")) {
+      likeButton.disabled = true;
+      likeButton.style.backgroundColor = '#ccc'; // Fica cinza
     }
   </script>
 </body>
 </html>
-
-
