@@ -238,27 +238,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Botão de Curtir</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     .like-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      padding: 15px;
+      display: flex;
+      align-items: center;
+      padding: 15px 25px;
       background-color: #FF4500;
       color: white;
       border: none;
-      border-radius: 50%;
-      font-size: 24px;
+      border-radius: 50px;
+      font-size: 20px;
       cursor: pointer;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
       z-index: 1000;
+      transition: background-color 0.3s ease;
     }
+
     .like-btn:disabled {
       background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .like-btn i {
+      margin-right: 10px;
+    }
+
+    .like-count {
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-  <button id="likeBtn" class="like-btn">Curtir</button>
+  <button id="likeBtn" class="like-btn">
+    <i class="fas fa-thumbs-up"></i> 
+    Curtir <span id="likeCount" class="like-count">0</span>
+  </button>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
@@ -284,8 +302,9 @@
       document.getElementById("likeBtn").disabled = true;
     }
 
-    // Referência ao botão
+    // Referência ao botão e à contagem de curtidas
     const likeButton = document.getElementById("likeBtn");
+    const likeCountDisplay = document.getElementById("likeCount");
 
     // Função para registrar a curtida
     function handleLike() {
@@ -311,13 +330,13 @@
     // Adicionando evento de clique ao botão
     likeButton.addEventListener("click", handleLike);
 
-    // Exibindo o total de curtidas (opcional)
+    // Exibindo o total de curtidas
     const likeCountRef = ref(database, 'likes/total');
     get(likeCountRef).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log('Total de curtidas:', snapshot.val());
+        likeCountDisplay.innerText = snapshot.val(); // Atualizando o número de curtidas exibido
       } else {
-        console.log('Nenhuma curtida ainda');
+        likeCountDisplay.innerText = "0"; // Caso não haja curtidas ainda
       }
     });
   </script>
