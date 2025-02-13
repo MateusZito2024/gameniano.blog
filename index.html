@@ -301,24 +301,9 @@
     const database = getDatabase(app);
     const auth = getAuth(app);
 
-    // Função para inicializar o Firebase Authentication
-    signInAnonymously(auth)
-      .then(() => {
-        console.log("Usuário autenticado anonimamente");
-        enableLikeButton(); // Habilita o botão após a autenticação
-      })
-      .catch((error) => {
-        console.error("Erro na autenticação:", error);
-      });
-
     // Referência ao botão e à contagem de curtidas
     const likeButton = document.getElementById("likeBtn");
     const likeCountDisplay = document.getElementById("likeCount");
-
-    // Função para habilitar o botão de curtir
-    function enableLikeButton() {
-      likeButton.disabled = false;
-    }
 
     // Função para pegar o ID do usuário anônimo
     function getUserId() {
@@ -382,7 +367,18 @@
         likeCountDisplay.innerText = snapshot.val(); // Atualizando o número de curtidas exibido
       }
     });
+
+    // Função para inicializar o Firebase Authentication e liberar o botão
+    signInAnonymously(auth)
+      .then(() => {
+        console.log("Usuário autenticado anonimamente");
+        likeButton.disabled = false; // Agora habilitamos o botão após a autenticação
+      })
+      .catch((error) => {
+        console.error("Erro na autenticação:", error);
+        alert("Erro na autenticação. Não foi possível continuar.");
+      });
+
   </script>
 </body>
 </html>
-
