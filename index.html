@@ -233,95 +233,93 @@
 </body>
 </html>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botão de Curtida</title>
-
-    <style>
-        .floating-like-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #ff4500;
-            color: white;
-            border: none;
-            padding: 15px 20px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .floating-like-button:hover {
-            background-color: #e03e00;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botão de Curtir</title>
+  <style>
+    .like-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 15px;
+      background-color: #FF4500;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .like-btn:disabled {
+      background-color: #ccc;
+    }
+  </style>
 </head>
 <body>
+  <button id="likeBtn" class="like-btn">Curtir</button>
 
-<button class="floating-like-button" onclick="handleLike()">
-    👍 <span id="likeCount">0</span>
-</button>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
 
-<script type="module">
-  // Importando os módulos do Firebase
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-  import { getDatabase, ref, get, set, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+    // Configuração do Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAB7D9_tOjAZqpomQ1ldpkM-PPxzvukMGU",
+      authDomain: "curtirbotao.firebaseapp.com",
+      databaseURL: "https://curtirbotao-default-rtdb.firebaseio.com",
+      projectId: "curtirbotao",
+      storageBucket: "curtirbotao.firebasestorage.app",
+      messagingSenderId: "1090024500334",
+      appId: "1:1090024500334:web:a824a9bc42cc5535070a7f"
+    };
 
-  // Configuração do Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyAB7D9_tOjAZqpomQ1ldpkM-PPxzvukMGU",
-    authDomain: "curtirbotao.firebaseapp.com",
-    databaseURL: "https://curtirbotao-default-rtdb.firebaseio.com",
-    projectId: "curtirbotao",
-    storageBucket: "curtirbotao.firebasestorage.app",
-    messagingSenderId: "1090024500334",
-    appId: "1:1090024500334:web:a824a9bc42cc5535070a7f"
-  };
+    // Inicializando o Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
 
-  // Inicializa o Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-  const likesRef = ref(db, "likes");
+    // Verificando se o usuário já curtiu usando localStorage
+    if (localStorage.getItem("hasLiked")) {
+      document.getElementById("likeBtn").disabled = true;
+    }
 
-  function getUniqueID() {
-      let userID = localStorage.getItem("userID");
-      if (!userID) {
-          userID = "user_" + Math.random().toString(36).substr(2, 9);
-          localStorage.setItem("userID", userID);
-      }
-      return userID;
-  }
+    // Referência ao botão
+    const likeButton = document.getElementById("likeBtn");
 
-  // Atualiza o número de curtidas em tempo real
-  onValue(likesRef, (snapshot) => {
-      const likes = snapshot.val() || 0;
-      document.getElementById("likeCount").textContent = likes;
-  });
+    // Função para registrar a curtida
+    function handleLike() {
+      const userId = localStorage.getItem("userId") || Date.now(); // Gerando um ID único se não houver um
+      localStorage.setItem("userId", userId);
+      
+      // Marcando que o dispositivo já curtiu
+      localStorage.setItem("hasLiked", "true");
+      likeButton.disabled = true;
 
-  function handleLike() {
-      let userID = getUniqueID();
-      let userRef = ref(db, `likedUsers/${userID}`);
-
-      get(userRef).then((snapshot) => {
-          if (!snapshot.exists()) {
-              set(userRef, true); // Registra que o usuário curtiu
-              runTransaction(likesRef, (currentLikes) => {
-                  return (currentLikes || 0) + 1;
-              });
-              alert("Obrigado pela curtida! 👍");
-          } else {
-              alert("Você já curtiu!");
-          }
+      // Atualizando as curtidas no Firebase
+      const likeCountRef = ref(database, 'likes/total');
+      get(likeCountRef).then((snapshot) => {
+        if (snapshot.exists()) {
+          const currentLikes = snapshot.val();
+          set(likeCountRef, currentLikes + 1); // Incrementando as curtidas no Firebase
+        } else {
+          set(likeCountRef, 1); // Iniciando com 1 curtida se não houver dados
+        }
       });
-  }
-</script>
+    }
 
+    // Adicionando evento de clique ao botão
+    likeButton.addEventListener("click", handleLike);
+
+    // Exibindo o total de curtidas (opcional)
+    const likeCountRef = ref(database, 'likes/total');
+    get(likeCountRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log('Total de curtidas:', snapshot.val());
+      } else {
+        console.log('Nenhuma curtida ainda');
+      }
+    });
+  </script>
 </body>
 </html>
