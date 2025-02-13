@@ -7,157 +7,26 @@
     <meta name="keywords" content="Gameniano, gameplays, jogos de terror, lives, YouTube, Twitch, criador de conteúdo">
     <title>Gameniano</title>
     <style>
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .content, .sidebar {
-                width: 90%;
-            }
-            iframe {
-                width: 100% !important;
-                height: auto !important;
-            }
-        }
-
-        /* Estilo do botão de Inscreva-se */
-        .subscribe-button {
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        /* Estilo do botão da Twitch */
-        .twitch-button {
-            background-color: #9146ff;
-            color: #fff;
-        }
-
-        /* Estilo do botão do YouTube */
-        .youtube-button {
+        /* Estilo do botão flutuante de curtidas */
+        .like-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             background-color: #ff0000;
-            color: #fff;
-        }
-
-        /* Estilo do botão do TikTok */
-        .tiktok-button {
-            background-color: #69C9D0;
             color: white;
-        }
-
-        /* Estilo do botão do Kwai */
-        .kwai-button {
-            background-color: #FFA500;
-            color: white;
-        }
-
-        /* Estilo geral */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            text-align: center;
-            padding: 20px;
-            background: #222;
-            color: white;
-        }
-
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            margin-top: 20px;
-            padding: 20px;
-        }
-
-        .content {
-            flex: 2;
-            padding: 20px;
-            background: white;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .sidebar {
-            flex: 1;
-            padding: 20px;
-            background: #ddd;
-            border-radius: 5px;
-            margin-left: 20px;
-            text-align: center;
-        }
-
-        .post {
-            margin-bottom: 20px;
-        }
-
-        .post iframe {
-            max-width: 100%;
-            border-radius: 5px;
-        }
-
-        .comment {
-            background-color: #f0f8ff;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
-            padding: 10px 20px;
-            position: relative;
-        }
-
-        .comment p {
-            margin: 0;
-        }
-
-        .comment .author {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
             font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
         }
-
-        .comment::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 10px;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 10px solid #f0f8ff;
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px;
-            background: #222;
-            color: white;
-        }
-
-        /* Ajuste para dispositivos móveis */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 28px;
-            }
-            .content {
-                width: 100%;
-            }
-            .sidebar {
-                width: 100%;
-                margin-left: 0;
-            }
-            .comment {
-                width: 90%;
-                margin-left: 5%;
-            }
+        .like-button span {
+            margin-left: 10px;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -168,67 +37,36 @@
     
     <div class="container">
         <div class="content">
-            <div class="post">
-                <h2>Última Gameplay</h2>
-                <iframe src="https://www.youtube.com/embed/fP9o4Wfl6zY" frameborder="0" allowfullscreen></iframe>
-                <p>Confira minha última gameplay cheia de sustos e adrenalina!</p>
-                <a href="https://www.youtube.com/@Gameniano" class="subscribe-button youtube-button">Inscreva-se no meu canal!</a>
-            </div>
-
-            <div class="post">
-                <h2>Vídeo no Kwai</h2>
-                <iframe src="https://www.kwai.com/embed/5195333750427505304" frameborder="0"></iframe>
-                <p>Confira esse vídeo do meu Kwai com conteúdo exclusivo!</p>
-                <a href="https://www.kwai.com/@Gameniano" class="subscribe-button kwai-button">Seguir no Kwai</a>
-            </div>
-
-            <div class="post">
-                <h2>Vídeo no TikTok</h2>
-                <iframe src="https://www.tiktok.com/embed/7470276746894380294" frameborder="0"></iframe>
-                <p>Confira esse vídeo do meu TikTok com conteúdo exclusivo!</p>
-                <a href="https://www.tiktok.com/@gameniano" class="subscribe-button tiktok-button">Seguir no TikTok</a>
-            </div>
-
-            <div class="post">
-                <h2>Comentários</h2>
-                <div class="comment">
-                    <p class="author">João:</p>
-                    <p>Adorei a gameplay, estou apavorado hahaha!</p>
-                </div>
-                <div class="comment">
-                    <p class="author">Ana:</p>
-                    <p>Sempre me divirto com seus vídeos! Continue assim.</p>
-                </div>
-                <a href="https://www.youtube.com/watch?v=fP9o4Wfl6zY" target="_blank">Ver mais comentários</a>
-            </div>
-
-            <div class="post">
-                <h2>Notícias e Atualizações</h2>
-                <p>Agora todos os dias tem Live na Twitch às 21:00! Fique ligado para as novidades.</p>
-                <p>Acompanhe para não perder as lives!</p>
-                <a href="https://www.twitch.tv/gameniano_" class="subscribe-button twitch-button">Inscreva-se na minha Twitch!</a>
-            </div>
+            <h2>Última Gameplay</h2>
+            <iframe src="https://www.youtube.com/embed/fP9o4Wfl6zY" frameborder="0" allowfullscreen></iframe>
+            <p>Confira minha última gameplay cheia de sustos e adrenalina!</p>
+            <a href="https://www.youtube.com/@Gameniano" class="subscribe-button youtube-button">Inscreva-se no meu canal!</a>
         </div>
-
-        <aside class="sidebar">
-            <h3>Quem é o Gameniano?</h3>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gameniano.png/600px-Gameniano.png?20250212073706" alt="Gameniano" style="width: 100px; border-radius: 50%; margin-bottom: 20px;">
-            <p>Gameniano é um criador de conteúdo brasileiro, nascido em 11 de julho de 2000, com destaque no YouTube, onde cria gameplays de jogos de terror. Ele também compartilha seus conteúdos no TikTok, Twitch e outras plataformas, com foco em entretenimento e interação com seus fãs. Residente de São Paulo, além de criador de conteúdo e streamer, ele também atua como marketer.</p>
-            <h3>Siga-me</h3>
-            <p>
-                <a href="https://www.youtube.com/@Gameniano">YouTube</a> |
-                <a href="https://www.tiktok.com/@gameniano">TikTok</a> |
-                <a href="https://www.twitch.tv/gameniano_">Twitch</a> |
-                <a href="https://kick.com/gameniano">Kick</a>
-            </p>
-            <img src="https://graph.facebook.com/gameniano/picture?type=large" alt="Facebook Profile" style="width: 100px; border-radius: 50%; margin-top: 20px;">
-            <br>
-            <a href="https://www.facebook.com/gameniano" class="subscribe-button" style="background-color: #3b5998;">Seguir no Facebook</a>
-        </aside>
     </div>
 
+    <!-- Botão de Curtidas -->
+    <button class="like-button" onclick="addLike()">
+        👍 Curtir <span id="like-count">0</span>
+    </button>
+    
     <footer>
         <p>&copy; 2025 Gameniano - Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        // Função para carregar o número de curtidas salvo no localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            let likes = localStorage.getItem("gameniano_likes") || 0;
+            document.getElementById("like-count").textContent = likes;
+        });
+
+        // Função para adicionar curtidas
+        function addLike() {
+            let likes = parseInt(localStorage.getItem("gameniano_likes")) || 0;
+            likes++;
+            localStorage.setItem("gameniano_likes", likes);
+            document.getElementById("like-count").textContent = likes;
+        }
+    </script>
 </body>
 </html>
