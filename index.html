@@ -232,65 +232,97 @@
     </footer>
 </body>
 </html>
-<style>
-    .floating-like-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #ff4500;
-        color: white;
-        border: none;
-        padding: 15px 20px;
-        border-radius: 50px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão de Curtida</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <style>
+        .floating-like-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #00FF5A;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .floating-like-button:hover {
-        background-color: #00FF5A;
-    }
-</style>
+        .floating-like-button:hover {
+            background-color: #00cc4a;
+        }
+    </style>
+</head>
+<body>
 
 <button class="floating-like-button" onclick="handleLike()">
     👍 <span id="likeCount">0</span>
 </button>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let savedLikes = localStorage.getItem("likes") || 0;
-        document.getElementById("likeCount").textContent = savedLikes;
-    });
+    // Configuração do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyAB7D9_tOjAZqpomQ1ldpkM-PPxzvukMGU",
+        authDomain: "curtirbotao.firebaseapp.com",
+        databaseURL: "https://curtirbotao-default-rtdb.firebaseio.com",
+        projectId: "curtirbotao",
+        storageBucket: "curtirbotao.firebasestorage.app",
+        messagingSenderId: "1090024500334",
+        appId: "1:1090024500334:web:a824a9bc42cc5535070a7f"
+    };
+
+    // Inicializa o Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const likesRef = db.ref("likes");
 
     function getUniqueID() {
         let userID = localStorage.getItem("userID");
         if (!userID) {
-            userID = "user_" + Math.random().toString(36).substr(2, 9); // Gera um ID aleatório
+            userID = "user_" + Math.random().toString(36).substr(2, 9);
             localStorage.setItem("userID", userID);
         }
         return userID;
     }
 
+    // Atualiza o número de curtidas em tempo real
+    likesRef.on("value", (snapshot) => {
+        const likes = snapshot.val() || 0;
+        document.getElementById("likeCount").textContent = likes;
+    });
+
     function handleLike() {
         let userID = getUniqueID();
-        let likedUsers = JSON.parse(localStorage.getItem("likedUsers")) || [];
+        let likedUsersRef = db.ref("likedUsers/" + userID);
 
-        if (!likedUsers.includes(userID)) {
-            likedUsers.push(userID);
-            localStorage.setItem("likedUsers", JSON.stringify(likedUsers));
+        likedUsersRef.once("value").then((snapshot) => {
+            if (!snapshot.exists()) {
+                // Adiciona o usuário à lista de curtidas
+                likedUsersRef.set(true);
+                
+                // Incrementa curtidas globalmente
+                likesRef.transaction((currentLikes) => {
+                    return (currentLikes || 0) + 1;
+                });
 
-            let currentLikes = parseInt(localStorage.getItem("likes")) || 0;
-            currentLikes++;
-            localStorage.setItem("likes", currentLikes);
-            document.getElementById("likeCount").textContent = currentLikes;
-
-            alert("Valeu meu nobre! 👍");
-        } else {
-            alert("Você já curtiu he he!");
-        }
+                alert("Obrigado pela curtida! 👍");
+            } else {
+                alert("Você já curtiu!");
+            }
+        });
     }
 </script>
+
+</body>
+</html>
