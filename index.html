@@ -7,163 +7,76 @@
     <meta name="keywords" content="Gameniano, gameplays, jogos de terror, lives, YouTube, Twitch, criador de conteúdo">
     <title>Gameniano</title>
     <style>
-        /* Estilos básicos */
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
+            background-color: #f8f8f8;
         }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
-        }
-
-        header h1 {
-            margin: 0;
-            text-align: center;
-        }
-
         .container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-top: 20px;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 20px auto;
+            max-width: 1200px;
         }
-
         .content {
-            flex: 1;
+            flex: 2;
             padding: 20px;
             background: white;
             border-radius: 5px;
             text-align: center;
-            margin: 10px;
         }
-
         .sidebar {
-            flex: 1;
+            width: 350px;
+            background: #fff;
+            border-radius: 15px;
             padding: 20px;
-            background: white;
-            border-radius: 5px;
-            text-align: center;
-            margin: 10px;
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+        }
+        iframe {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
         }
 
-        .post {
-            margin-bottom: 20px;
-        }
-
-        .subscribe-button {
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .youtube-button {
-            background-color: #ff0000;
-        }
-
-        .kwai-button {
-            background-color: #FFA500;
-        }
-
-        .tiktok-button {
-            background-color: #69C9D0;
-        }
-
-        .twitch-button {
-            background-color: #9146ff;
-        }
-
-        /* Responsividade para dispositivos móveis */
+        /* Responsividade */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 24px;
-            }
-
             .container {
                 flex-direction: column;
                 align-items: center;
+                width: 100%;
+                padding: 10px;
             }
-
             .content, .sidebar {
-                width: 90%;
-                margin: 10px 0;
-            }
-
-            iframe {
                 width: 100%;
-                height: auto;
+                margin-bottom: 20px;
             }
-
-            .post {
-                padding: 15px;
-                background: #f9f9f9;
+            h1, h2 {
+                font-size: 1.5em;
             }
-
-            .gameniano-milestone, .sidebar {
-                width: 100%;
-                margin: 10px 0;
+            .subscribe-button {
+                padding: 8px 16px;
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+    <header style="text-align: center; padding: 20px; background: #222; color: white;">
         <h1>Gameniano</h1>
     </header>
     
     <div class="container">
         <div class="content">
-            <div class="post">
-                <h2>Última Gameplay</h2>
-                <iframe src="https://www.youtube.com/embed/fP9o4Wfl6zY" frameborder="0" allowfullscreen></iframe>
-                <p>Confira minha última gameplay cheia de sustos e adrenalina!</p>
-                <a href="https://www.youtube.com/@Gameniano" class="subscribe-button youtube-button">Inscreva-se no meu canal!</a>
-            </div>
-            <div class="post">
-                <h2>Vídeo no Kwai</h2>
-                <iframe src="https://www.kwai.com/embed/5195333750427505304" frameborder="0"></iframe>
-                <p>Confira esse vídeo do meu Kwai com conteúdo exclusivo!</p>
-                <a href="https://www.kwai.com/@gameniano" class="subscribe-button kwai-button">Seguir no Kwai</a>
-            </div>
-            <div class="post">
-                <h2>Vídeo no TikTok</h2>
-                <iframe src="https://www.tiktok.com/embed/7470276746894380294" frameborder="0"></iframe>
-                <p>Confira esse vídeo do meu TikTok com conteúdo exclusivo!</p>
-                <a href="https://www.tiktok.com/@gameniano" class="subscribe-button tiktok-button">Seguir no TikTok</a>
-            </div>
-            <div class="post" style="background: #f0f0f0; border-radius: 5px; padding: 15px; margin-top: 20px;">
-                <h2>Comentários</h2>
-                <div class="comment" style="margin-bottom: 10px; padding: 10px 20px; background-color: #f0f8ff; border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 90%; margin-left: 5%; position: relative;">
-                    <p style="font-weight: bold;">João:</p>
-                    <p>Adorei a gameplay, estou apavorado hahaha!</p>
-                </div>
-                <div class="comment" style="margin-bottom: 10px; padding: 10px 20px; background-color: #f0f8ff; border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 90%; margin-left: 5%; position: relative;">
-                    <p style="font-weight: bold;">Ana:</p>
-                    <p>Sempre me divirto com seus vídeos! Continue assim.</p>
-                </div>
-                <a href="https://www.youtube.com/watch?v=fP9o4Wfl6zY" target="_blank" style="color: #007bff; font-weight: bold; text-decoration: none;">Ver mais comentários</a>
-            </div>
-
-            <div class="post" style="background: #e8f8e8; border-radius: 5px; padding: 15px; margin-top: 20px;">
-                <h2>Notícias e Atualizações</h2>
-                <p>Agora todos os dias tem Live na Twitch às 21:00! Fique ligado para as novidades.</p>
-                <a href="https://www.twitch.tv/gameniano_" class="subscribe-button twitch-button">Inscreva-se na minha Twitch!</a>
-            </div>
+            <h2>Última Gameplay</h2>
+            <iframe src="https://www.youtube.com/embed/fP9o4Wfl6zY" frameborder="0" allowfullscreen></iframe>
+            <p>Confira minha última gameplay cheia de sustos e adrenalina!</p>
+            <a href="https://www.youtube.com/@Gameniano" class="subscribe-button" style="background: red; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px;">Inscreva-se no meu canal!</a>
         </div>
-
-        <!-- Sidebar -->
         <aside class="sidebar">
             <h3>Quem é o Gameniano?</h3>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gameniano.png/600px-Gameniano.png?20250212073706" alt="Gameniano" style="width: 120px; border-radius: 50%; margin-bottom: 20px;">
-            <p>Gameniano é um criador de conteúdo brasileiro, com destaque no YouTube, onde cria gameplays de jogos de terror. Ele também compartilha seus conteúdos no TikTok, Twitch e outras plataformas.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gameniano.png/600px-Gameniano.png?20250212073706" alt="Gameniano" style="width: 120px; border-radius: 50%;">
+            <p>Gameniano é um criador de conteúdo brasileiro, conhecido por suas gameplays de terror.</p>
         </aside>
     </div>
 
