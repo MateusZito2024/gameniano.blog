@@ -375,7 +375,8 @@
         likeButton.disabled = false; // Agora habilitamos o botão após a autenticação
       })
       .catch((error) => {
-        console.error("Erro na autenticação:", error);
+        // Imprimir o erro de forma mais detalhada
+        console.error("Erro na autenticação:", error.code, error.message);
         alert("Erro na autenticação. Não foi possível continuar.");
       });
 
