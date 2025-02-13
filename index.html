@@ -232,3 +232,65 @@
     </footer>
 </body>
 </html>
+<style>
+    .floating-like-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #ff4500;
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .floating-like-button:hover {
+        background-color: #e03e00;
+    }
+</style>
+
+<button class="floating-like-button" onclick="handleLike()">
+    👍 <span id="likeCount">0</span>
+</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let savedLikes = localStorage.getItem("likes") || 0;
+        document.getElementById("likeCount").textContent = savedLikes;
+    });
+
+    function getUniqueID() {
+        let userID = localStorage.getItem("userID");
+        if (!userID) {
+            userID = "user_" + Math.random().toString(36).substr(2, 9); // Gera um ID aleatório
+            localStorage.setItem("userID", userID);
+        }
+        return userID;
+    }
+
+    function handleLike() {
+        let userID = getUniqueID();
+        let likedUsers = JSON.parse(localStorage.getItem("likedUsers")) || [];
+
+        if (!likedUsers.includes(userID)) {
+            likedUsers.push(userID);
+            localStorage.setItem("likedUsers", JSON.stringify(likedUsers));
+
+            let currentLikes = parseInt(localStorage.getItem("likes")) || 0;
+            currentLikes++;
+            localStorage.setItem("likes", currentLikes);
+            document.getElementById("likeCount").textContent = currentLikes;
+
+            alert("Obrigado pela curtida! 👍");
+        } else {
+            alert("Você já curtiu!");
+        }
+    }
+</script>
