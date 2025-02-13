@@ -297,10 +297,11 @@
     /* Efeito de "curtidas saindo" */
     .like-particles {
       position: absolute;
-      top: 50%;
+      top: -20px; /* Faz com que as partículas saiam de cima do botão */
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
       pointer-events: none;
+      z-index: 500;
     }
 
     .like-particle {
@@ -318,7 +319,7 @@
         opacity: 1;
       }
       100% {
-        transform: scale(0) translate(30px, -30px);
+        transform: scale(0) translate(0, -30px); /* Partículas subindo */
         opacity: 0;
       }
     }
