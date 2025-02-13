@@ -283,6 +283,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
     import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 
     // Configuração do Firebase
     const firebaseConfig = {
@@ -298,28 +299,33 @@
     // Inicializando o Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
+    const auth = getAuth(app);
 
-    // Gerar ID único baseado no navegador/dispositivo (não é perfeito, mas funciona para isso)
-    const deviceId = btoa(navigator.userAgent + Date.now()); // Gerando ID único com userAgent e timestamp
-    localStorage.setItem("deviceId", deviceId);  // Armazenando localmente no navegador
-
-    // Verificando se o dispositivo já curtiu
-    const hasLiked = localStorage.getItem("hasLiked");
-    if (hasLiked === "true") {
-      document.getElementById("likeBtn").disabled = true;
-    }
+    // Função de autenticação anônima
+    signInAnonymously(auth)
+      .then(() => {
+        console.log("Usuário autenticado anonimamente");
+      })
+      .catch((error) => {
+        console.error("Erro na autenticação:", error);
+      });
 
     // Referência ao botão e à contagem de curtidas
     const likeButton = document.getElementById("likeBtn");
     const likeCountDisplay = document.getElementById("likeCount");
 
-    // Função para registrar a curtida
+    // Verificando se o dispositivo já curtiu
     function handleLike() {
-      const userLikeRef = ref(database, `likes/hasLiked/${deviceId}`);
+      const userId = auth.currentUser.uid; // Pegando ID único do usuário autenticado
+
+      // Referência para verificar se o usuário já curtiu
+      const userLikeRef = ref(database, `likes/hasLiked/${userId}`);
+
       get(userLikeRef).then((snapshot) => {
         if (snapshot.exists()) {
           // Se o dispositivo já curtiu, não faz nada
           console.log("Este dispositivo já curtiu!");
+          likeButton.disabled = true;
         } else {
           // Se o dispositivo ainda não curtiu, registramos a curtida
           set(userLikeRef, true); // Marca que esse dispositivo já curtiu
@@ -335,8 +341,6 @@
             }
           });
 
-          // Marcando que o dispositivo já curtiu localmente
-          localStorage.setItem("hasLiked", "true");
           likeButton.disabled = true;
         }
       });
@@ -355,4 +359,3 @@
   </script>
 </body>
 </html>
-
