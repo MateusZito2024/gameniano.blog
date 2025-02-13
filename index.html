@@ -240,6 +240,7 @@
   <title>Botão de Curtir</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
+    /* Estilos para o botão */
     .like-btn {
       position: fixed;
       bottom: 20px;
@@ -258,6 +259,7 @@
       transition: background-color 0.3s ease;
       min-width: 120px;
       text-align: center;
+      animation: shake 1s infinite alternate;
     }
 
     .like-btn:disabled {
@@ -271,6 +273,25 @@
 
     .like-count {
       font-size: 16px;
+    }
+
+    /* Animação de tremor */
+    @keyframes shake {
+      0% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: translateX(-5px);
+      }
+      50% {
+        transform: translateX(5px);
+      }
+      75% {
+        transform: translateX(-5px);
+      }
+      100% {
+        transform: translateX(5px);
+      }
     }
   </style>
 </head>
@@ -323,38 +344,34 @@
         return;
       }
 
-      // Referência para verificar se o usuário já curtiu
+      // Verificando se o usuário já curtiu nesta sessão (guia normal)
+      if (localStorage.getItem("hasLiked")) {
+        alert("Você já curtiu este botão nesta sessão.");
+        return;
+      }
+
+      // Registrando a curtida no Firebase
       const userLikeRef = ref(database, `likes/hasLiked/${userId}`);
-
-      get(userLikeRef).then((snapshot) => {
-        if (snapshot.exists()) {
-          // Se o usuário já curtiu, desabilita o botão
-          console.log("Este dispositivo já curtiu!");
-          likeButton.disabled = true;
-        } else {
-          // Se o usuário ainda não curtiu, registramos a curtida
-          set(userLikeRef, true).then(() => {
-            // Atualizando as curtidas no Firebase
-            const likeCountRef = ref(database, 'likes/total');
-            get(likeCountRef).then((snapshot) => {
-              if (snapshot.exists()) {
-                const currentLikes = snapshot.val();
-                set(likeCountRef, currentLikes + 1); // Incrementando as curtidas no Firebase
-              } else {
-                set(likeCountRef, 1); // Iniciando com 1 curtida se não houver dados
-              }
-            }).catch((error) => {
-              console.error("Erro ao atualizar contagem de curtidas:", error);
-            });
-          }).catch((error) => {
-            console.error("Erro ao registrar curtida do dispositivo:", error);
-          });
-
-          likeButton.disabled = true;
-        }
+      set(userLikeRef, true).then(() => {
+        // Atualizando as curtidas no Firebase
+        const likeCountRef = ref(database, 'likes/total');
+        get(likeCountRef).then((snapshot) => {
+          if (snapshot.exists()) {
+            const currentLikes = snapshot.val();
+            set(likeCountRef, currentLikes + 1); // Incrementando as curtidas no Firebase
+          } else {
+            set(likeCountRef, 1); // Iniciando com 1 curtida se não houver dados
+          }
+        }).catch((error) => {
+          console.error("Erro ao atualizar contagem de curtidas:", error);
+        });
       }).catch((error) => {
-        console.error("Erro ao verificar se o dispositivo já curtiu:", error);
+        console.error("Erro ao registrar curtida do dispositivo:", error);
       });
+
+      // Marcando que o dispositivo já curtiu nesta sessão
+      localStorage.setItem("hasLiked", "true");
+      likeButton.disabled = true;
     }
 
     // Adicionando evento de clique ao botão
