@@ -126,3 +126,197 @@
     </footer>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botão de Curtir</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Estilos para o botão */
+    .like-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #FF4500;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      transition: background-color 0.3s ease;
+      min-width: 120px;
+      text-align: center;
+      animation: shake 1s infinite alternate;
+    }
+
+    .like-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .like-btn i {
+      margin-right: 8px;
+    }
+
+    .like-count {
+      font-size: 16px;
+    }
+
+    /* Animação de tremor */
+    @keyframes shake {
+      0% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: translateX(-5px);
+      }
+      50% {
+        transform: translateX(5px);
+      }
+      75% {
+        transform: translateX(-5px);
+      }
+      100% {
+        transform: translateX(5px);
+      }
+    }
+
+    /* Efeito de "curtidas saindo" */
+    .like-particles {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 500;
+    }
+
+    .like-particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #FF4500;
+      border-radius: 50%;
+      animation: particleAnim 1s ease-out forwards;
+    }
+
+    @keyframes particleAnim {
+      0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0) translate(0, -30px); /* Partículas subindo */
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button id="likeBtn" class="like-btn">
+    <i class="fas fa-thumbs-up"></i> 
+    Curtir <span id="likeCount" class="like-count">0</span>
+  </button>
+
+  <div id="likeParticles" class="like-particles"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+
+    // Configuração do Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAB7D9_tOjAZqpomQ1ldpkM-PPxzvukMGU",
+      authDomain: "curtirbotao.firebaseapp.com",
+      databaseURL: "https://curtirbotao-default-rtdb.firebaseio.com",
+      projectId: "curtirbotao",
+      storageBucket: "curtirbotao.firebasestorage.app",
+      messagingSenderId: "1090024500334",
+      appId: "1:1090024500334:web:a824a9bc42cc5535070a7f"
+    };
+
+    // Inicializando o Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    // Referência ao botão e à contagem de curtidas
+    const likeButton = document.getElementById("likeBtn");
+    const likeCountDisplay = document.getElementById("likeCount");
+    const likeParticles = document.getElementById("likeParticles");
+
+    // Função para criar partículas de "likes" saindo do botão
+    function createLikeParticles() {
+      for (let i = 0; i < 5; i++) { // Gera 5 partículas
+        const particle = document.createElement("div");
+        particle.classList.add("like-particle");
+        particle.style.animationDelay = `${Math.random() * 0.5}s`; // Delay aleatório
+        const size = Math.random() * 10 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        likeParticles.appendChild(particle);
+
+        // Remove a partícula depois da animação
+        setTimeout(() => {
+          particle.remove();
+        }, 1000);
+      }
+    }
+
+    // Função para verificar se o dispositivo já curtiu
+    function handleLike() {
+      if (localStorage.getItem("hasLiked")) {
+        alert("Você já curtiu este botão nesta sessão.");
+        return;
+      }
+
+      // Registrando a curtida no Firebase
+      const likeCountRef = ref(database, 'likes/total');
+      get(likeCountRef).then((snapshot) => {
+        if (snapshot.exists()) {
+          const currentLikes = snapshot.val();
+          set(likeCountRef, currentLikes + 1); // Incrementando as curtidas no Firebase
+        } else {
+          set(likeCountRef, 1); // Iniciando com 1 curtida se não houver dados
+        }
+      }).catch((error) => {
+        console.error("Erro ao atualizar contagem de curtidas:", error);
+      });
+
+      // Marcando que o dispositivo já curtiu nesta sessão
+      localStorage.setItem("hasLiked", "true");
+
+      // Desabilitando o botão após a curtida e deixando cinza
+      likeButton.disabled = true;
+      likeButton.style.backgroundColor = '#ccc';
+      
+      // Criando as partículas de "likes" saindo
+      createLikeParticles();
+    }
+
+    // Adicionando evento de clique ao botão
+    likeButton.addEventListener("click", handleLike);
+
+    // Atualizando o número de curtidas em tempo real
+    const likeCountRef = ref(database, 'likes/total');
+    onValue(likeCountRef, (snapshot) => {
+      if (snapshot.exists()) {
+        likeCountDisplay.innerText = snapshot.val(); // Atualizando o número de curtidas exibido
+      }
+    });
+
+    // Verifica se o botão já foi desabilitado após a atualização da página
+    if (localStorage.getItem("hasLiked")) {
+      likeButton.disabled = true;
+      likeButton.style.backgroundColor = '#ccc'; // Fica cinza
+    }
+  </script>
+</body>
+</html>
