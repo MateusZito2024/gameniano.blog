@@ -320,3 +320,100 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de Visitas</title>
+  <style>
+    /* Estilo do contador de visitas */
+    #visitCounter {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 24px;
+      color: #333;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      animation: bounce 2s infinite;
+    }
+
+    #visitCount {
+      margin-left: 10px;
+    }
+
+    /* Animação de "bounce" (efeito borrachudo) */
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="visitCounter">
+    Visitas: <span id="visitCount">0</span>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+
+    // Configuração do Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAB7D9_tOjAZqpomQ1ldpkM-PPxzvukMGU",
+      authDomain: "curtirbotao.firebaseapp.com",
+      databaseURL: "https://curtirbotao-default-rtdb.firebaseio.com",
+      projectId: "curtirbotao",
+      storageBucket: "curtirbotao.firebasestorage.app",
+      messagingSenderId: "1090024500334",
+      appId: "1:1090024500334:web:a824a9bc42cc5535070a7f"
+    };
+
+    // Inicializando o Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    const visitCountDisplay = document.getElementById("visitCount");
+
+    // Função para verificar e registrar uma visita
+    function handleVisit() {
+      if (localStorage.getItem("hasVisited")) {
+        return; // Se o dispositivo já visitou, não conta novamente
+      }
+
+      // Registrando visita no Firebase
+      const visitCountRef = ref(database, 'visits/total');
+      get(visitCountRef).then((snapshot) => {
+        if (snapshot.exists()) {
+          const currentVisits = snapshot.val();
+          set(visitCountRef, currentVisits + 1); // Incrementando as visitas no Firebase
+        } else {
+          set(visitCountRef, 1); // Iniciando com 1 visita se não houver dados
+        }
+      }).catch((error) => {
+        console.error("Erro ao atualizar contagem de visitas:", error);
+      });
+
+      // Marcando que o dispositivo já visitou
+      localStorage.setItem("hasVisited", "true");
+    }
+
+    // Chamando a função para contar a visita
+    handleVisit();
+
+    // Atualizando o número de visitas em tempo real
+    const visitCountRef = ref(database, 'visits/total');
+    onValue(visitCountRef, (snapshot) => {
+      if (snapshot.exists()) {
+        visitCountDisplay.innerText = snapshot.val(); // Atualizando o número de visitas exibido
+      }
+    });
+  </script>
+</body>
+</html>
