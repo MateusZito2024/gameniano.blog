@@ -296,7 +296,7 @@
   </style>
 </head>
 <body>
-  <button id="likeBtn" class="like-btn" disabled>
+  <button id="likeBtn" class="like-btn">
     <i class="fas fa-thumbs-up"></i> 
     Curtir <span id="likeCount" class="like-count">0</span>
   </button>
@@ -304,7 +304,6 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
     import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
-    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 
     // Configuração do Firebase
     const firebaseConfig = {
@@ -320,58 +319,34 @@
     // Inicializando o Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-    const auth = getAuth(app);
 
     // Referência ao botão e à contagem de curtidas
     const likeButton = document.getElementById("likeBtn");
     const likeCountDisplay = document.getElementById("likeCount");
 
-    // Função para pegar o ID do usuário anônimo
-    function getUserId() {
-      const user = auth.currentUser;
-      if (user) {
-        return user.uid; // ID único gerado pelo Firebase
-      }
-      return null;
-    }
-
     // Função para verificar se o dispositivo já curtiu
     function handleLike() {
-      const userId = getUserId(); // Pegando o ID único do usuário
-
-      if (!userId) {
-        alert("Erro: Não foi possível identificar o usuário.");
-        return;
-      }
-
-      // Verificando se o usuário já curtiu nesta sessão (guia normal)
       if (localStorage.getItem("hasLiked")) {
         alert("Você já curtiu este botão nesta sessão.");
         return;
       }
 
       // Registrando a curtida no Firebase
-      const userLikeRef = ref(database, `likes/hasLiked/${userId}`);
-      set(userLikeRef, true).then(() => {
-        // Atualizando as curtidas no Firebase
-        const likeCountRef = ref(database, 'likes/total');
-        get(likeCountRef).then((snapshot) => {
-          if (snapshot.exists()) {
-            const currentLikes = snapshot.val();
-            set(likeCountRef, currentLikes + 1); // Incrementando as curtidas no Firebase
-          } else {
-            set(likeCountRef, 1); // Iniciando com 1 curtida se não houver dados
-          }
-        }).catch((error) => {
-          console.error("Erro ao atualizar contagem de curtidas:", error);
-        });
+      const likeCountRef = ref(database, 'likes/total');
+      get(likeCountRef).then((snapshot) => {
+        if (snapshot.exists()) {
+          const currentLikes = snapshot.val();
+          set(likeCountRef, currentLikes + 1); // Incrementando as curtidas no Firebase
+        } else {
+          set(likeCountRef, 1); // Iniciando com 1 curtida se não houver dados
+        }
       }).catch((error) => {
-        console.error("Erro ao registrar curtida do dispositivo:", error);
+        console.error("Erro ao atualizar contagem de curtidas:", error);
       });
 
       // Marcando que o dispositivo já curtiu nesta sessão
       localStorage.setItem("hasLiked", "true");
-      likeButton.disabled = true;
+      likeButton.disabled = true; // Desabilitando o botão após a curtida
     }
 
     // Adicionando evento de clique ao botão
@@ -385,18 +360,11 @@
       }
     });
 
-    // Função para inicializar o Firebase Authentication e liberar o botão
-    signInAnonymously(auth)
-      .then(() => {
-        console.log("Usuário autenticado anonimamente");
-        likeButton.disabled = false; // Agora habilitamos o botão após a autenticação
-      })
-      .catch((error) => {
-        // Imprimir o erro de forma mais detalhada
-        console.error("Erro na autenticação:", error.code, error.message);
-        alert("Erro na autenticação. Não foi possível continuar.");
-      });
-
+    // Habilitando o botão de curtida
+    if (!localStorage.getItem("hasLiked")) {
+      likeButton.disabled = false;
+    }
   </script>
 </body>
 </html>
+
