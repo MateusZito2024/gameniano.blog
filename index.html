@@ -246,16 +246,18 @@
       right: 20px;
       display: flex;
       align-items: center;
-      padding: 15px 25px;
+      padding: 10px 20px;
       background-color: #FF4500;
       color: white;
       border: none;
       border-radius: 50px;
-      font-size: 20px;
+      font-size: 18px;
       cursor: pointer;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
       z-index: 1000;
       transition: background-color 0.3s ease;
+      min-width: 120px;
+      text-align: center;
     }
 
     .like-btn:disabled {
@@ -264,11 +266,11 @@
     }
 
     .like-btn i {
-      margin-right: 10px;
+      margin-right: 8px;
     }
 
     .like-count {
-      font-size: 18px;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -280,7 +282,7 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-    import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+    import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
 
     // Configuração do Firebase
     const firebaseConfig = {
@@ -297,8 +299,12 @@
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
 
-    // Verificando se o usuário já curtiu usando localStorage
-    if (localStorage.getItem("hasLiked")) {
+    // Gerando ID único para o dispositivo usando sessionStorage (mais persistente que localStorage)
+    const userId = sessionStorage.getItem("userId") || Date.now(); // Gerando um ID único
+    sessionStorage.setItem("userId", userId);
+
+    // Verificando se o usuário já curtiu
+    if (sessionStorage.getItem("hasLiked") === "true") {
       document.getElementById("likeBtn").disabled = true;
     }
 
@@ -308,11 +314,8 @@
 
     // Função para registrar a curtida
     function handleLike() {
-      const userId = localStorage.getItem("userId") || Date.now(); // Gerando um ID único se não houver um
-      localStorage.setItem("userId", userId);
-      
       // Marcando que o dispositivo já curtiu
-      localStorage.setItem("hasLiked", "true");
+      sessionStorage.setItem("hasLiked", "true");
       likeButton.disabled = true;
 
       // Atualizando as curtidas no Firebase
@@ -330,13 +333,11 @@
     // Adicionando evento de clique ao botão
     likeButton.addEventListener("click", handleLike);
 
-    // Exibindo o total de curtidas
+    // Atualizando o número de curtidas em tempo real
     const likeCountRef = ref(database, 'likes/total');
-    get(likeCountRef).then((snapshot) => {
+    onValue(likeCountRef, (snapshot) => {
       if (snapshot.exists()) {
         likeCountDisplay.innerText = snapshot.val(); // Atualizando o número de curtidas exibido
-      } else {
-        likeCountDisplay.innerText = "0"; // Caso não haja curtidas ainda
       }
     });
   </script>
