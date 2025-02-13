@@ -1,78 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notícias</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .news-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .news-card {
-            background-color: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .news-card img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .news-card h2 {
-            font-size: 20px;
-            margin: 10px 0;
-        }
-        .news-card a {
-            text-decoration: none;
-            color: #007BFF;
-            font-weight: bold;
-        }
-    </style>
+    <title>Notícias - Meu Site</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>Notícias Recentes</header>
-    <div class="container">
-        <div class="news-section">
-            <div class="news-card">
-                <img src="https://via.placeholder.com/300" alt="Notícia 1">
-                <h2>Nova Descoberta Científica</h2>
-                <p>Pesquisadores revelam uma descoberta incrível que pode mudar o mundo. Saiba mais!</p>
-                <a href="https://www.bbc.com/portuguese" target="_blank">Leia mais</a>
+
+    <header>
+        <h1>Últimas Notícias</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="noticia-principal">
+            <img src="https://via.placeholder.com/800x400" alt="Imagem da Notícia">
+            <h2>Grande Evento Marca o Ano!</h2>
+            <p>O evento anual reuniu milhares de pessoas e trouxe muitas novidades. Especialistas apontam que este pode ser o maior evento da década.</p>
+            <a href="#">Leia mais...</a>
+        </section>
+
+        <section class="noticias-destaque">
+            <h2>Mais Notícias</h2>
+            <div class="noticia">
+                <img src="https://via.placeholder.com/400x200" alt="Imagem da Notícia 1">
+                <h3>Nova Tecnologia Revoluciona o Mercado</h3>
+                <p>Pesquisadores anunciam uma nova descoberta tecnológica que pode mudar o mundo como conhecemos.</p>
+                <a href="#">Leia mais...</a>
             </div>
-            <div class="news-card">
-                <img src="https://via.placeholder.com/300" alt="Notícia 2">
-                <h2>Lançamento de Tecnologia</h2>
-                <p>A mais nova inovação no mundo da tecnologia foi revelada. Veja os detalhes!</p>
-                <a href="https://www.tecmundo.com.br/" target="_blank">Leia mais</a>
+
+            <div class="noticia">
+                <img src="https://via.placeholder.com/400x200" alt="Imagem da Notícia 2">
+                <h3>Descoberta Científica Incrível!</h3>
+                <p>Cientistas descobrem um novo fenômeno que pode explicar muitos mistérios do universo.</p>
+                <a href="#">Leia mais...</a>
             </div>
-            <div class="news-card">
-                <img src="https://via.placeholder.com/300" alt="Notícia 3">
-                <h2>Recorde no Esporte</h2>
-                <p>Um atleta quebra um recorde mundial e impressiona o público. Descubra como!</p>
-                <a href="https://ge.globo.com/" target="_blank">Leia mais</a>
-            </div>
-        </div>
-    </div>
+        </section>
+
+        <section class="fontes">
+            <h2>Fontes de Informação</h2>
+            <ul>
+                <li><a href="https://www.bbc.com/portuguese" target="_blank">BBC News Brasil</a></li>
+                <li><a href="https://g1.globo.com/" target="_blank">G1 Notícias</a></li>
+                <li><a href="https://www.uol.com.br/" target="_blank">UOL Notícias</a></li>
+            </ul>
+        </section>
+    </main>
+
 </body>
 </html>
