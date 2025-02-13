@@ -142,25 +142,22 @@
             color: white;
         }
 
-        /* Botão de curtida flutuante */
-        .like-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-        }
-
-        .like-button span {
-            margin-left: 10px;
+        /* Ajuste para dispositivos móveis */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+            .content {
+                width: 100%;
+            }
+            .sidebar {
+                width: 100%;
+                margin-left: 0;
+            }
+            .comment {
+                width: 90%;
+                margin-left: 5%;
+            }
         }
     </style>
 </head>
@@ -177,28 +174,61 @@
                 <p>Confira minha última gameplay cheia de sustos e adrenalina!</p>
                 <a href="https://www.youtube.com/@Gameniano" class="subscribe-button youtube-button">Inscreva-se no meu canal!</a>
             </div>
-        </div>
-    </div>
 
-    <button class="like-button" onclick="incrementLikes()">
-        ❤️ Curtir <span id="like-count">0</span>
-    </button>
+            <div class="post">
+                <h2>Vídeo no Kwai</h2>
+                <iframe src="https://www.kwai.com/embed/5195333750427505304" frameborder="0"></iframe>
+                <p>Confira esse vídeo do meu Kwai com conteúdo exclusivo!</p>
+                <a href="https://www.kwai.com/@Gameniano" class="subscribe-button kwai-button">Seguir no Kwai</a>
+            </div>
+
+            <div class="post">
+                <h2>Vídeo no TikTok</h2>
+                <iframe src="https://www.tiktok.com/embed/7470276746894380294" frameborder="0"></iframe>
+                <p>Confira esse vídeo do meu TikTok com conteúdo exclusivo!</p>
+                <a href="https://www.tiktok.com/@gameniano" class="subscribe-button tiktok-button">Seguir no TikTok</a>
+            </div>
+
+            <div class="post">
+                <h2>Comentários</h2>
+                <div class="comment">
+                    <p class="author">João:</p>
+                    <p>Adorei a gameplay, estou apavorado hahaha!</p>
+                </div>
+                <div class="comment">
+                    <p class="author">Ana:</p>
+                    <p>Sempre me divirto com seus vídeos! Continue assim.</p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=fP9o4Wfl6zY" target="_blank">Ver mais comentários</a>
+            </div>
+
+            <div class="post">
+                <h2>Notícias e Atualizações</h2>
+                <p>Agora todos os dias tem Live na Twitch às 21:00! Fique ligado para as novidades.</p>
+                <p>Acompanhe para não perder as lives!</p>
+                <a href="https://www.twitch.tv/gameniano_" class="subscribe-button twitch-button">Inscreva-se na minha Twitch!</a>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <h3>Quem é o Gameniano?</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gameniano.png/600px-Gameniano.png?20250212073706" alt="Gameniano" style="width: 100px; border-radius: 50%; margin-bottom: 20px;">
+            <p>Gameniano é um criador de conteúdo brasileiro, nascido em 11 de julho de 2000, com destaque no YouTube, onde cria gameplays de jogos de terror. Ele também compartilha seus conteúdos no TikTok, Twitch e outras plataformas, com foco em entretenimento e interação com seus fãs. Residente de São Paulo, além de criador de conteúdo e streamer, ele também atua como marketer.</p>
+            <h3>Siga-me</h3>
+            <p>
+                <a href="https://www.youtube.com/@Gameniano">YouTube</a> |
+                <a href="https://www.tiktok.com/@gameniano">TikTok</a> |
+                <a href="https://www.twitch.tv/gameniano_">Twitch</a> |
+                <a href="https://kick.com/gameniano">Kick</a>
+            </p>
+            <img src="https://graph.facebook.com/gameniano/picture?type=large" alt="Facebook Profile" style="width: 100px; border-radius: 50%; margin-top: 20px;">
+            <br>
+            <a href="https://www.facebook.com/gameniano" class="subscribe-button" style="background-color: #3b5998;">Seguir no Facebook</a>
+        </aside>
+    </div>
 
     <footer>
         <p>&copy; 2025 Gameniano - Todos os direitos reservados.</p>
     </footer>
-
-    <script>
-        function incrementLikes() {
-            let likes = localStorage.getItem("likes") || 0;
-            likes++;
-            localStorage.setItem("likes", likes);
-            document.getElementById("like-count").innerText = likes;
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("like-count").innerText = localStorage.getItem("likes") || 0;
-        });
-    </script>
 </body>
 </html>
