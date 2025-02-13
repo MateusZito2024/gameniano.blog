@@ -293,6 +293,35 @@
         transform: translateX(5px);
       }
     }
+
+    /* Efeito de "curtidas saindo" */
+    .like-particles {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .like-particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #FF4500;
+      border-radius: 50%;
+      animation: particleAnim 1s ease-out forwards;
+    }
+
+    @keyframes particleAnim {
+      0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0) translate(30px, -30px);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -300,6 +329,8 @@
     <i class="fas fa-thumbs-up"></i> 
     Curtir <span id="likeCount" class="like-count">0</span>
   </button>
+
+  <div id="likeParticles" class="like-particles"></div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
@@ -323,6 +354,26 @@
     // Referência ao botão e à contagem de curtidas
     const likeButton = document.getElementById("likeBtn");
     const likeCountDisplay = document.getElementById("likeCount");
+    const likeParticles = document.getElementById("likeParticles");
+
+    // Função para criar partículas de "likes" saindo do botão
+    function createLikeParticles() {
+      for (let i = 0; i < 5; i++) { // Gera 5 partículas
+        const particle = document.createElement("div");
+        particle.classList.add("like-particle");
+        particle.style.animationDelay = `${Math.random() * 0.5}s`; // Delay aleatório
+        const size = Math.random() * 10 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        likeParticles.appendChild(particle);
+
+        // Remove a partícula depois da animação
+        setTimeout(() => {
+          particle.remove();
+        }, 1000);
+      }
+    }
 
     // Função para verificar se o dispositivo já curtiu
     function handleLike() {
@@ -346,7 +397,13 @@
 
       // Marcando que o dispositivo já curtiu nesta sessão
       localStorage.setItem("hasLiked", "true");
-      likeButton.disabled = true; // Desabilitando o botão após a curtida
+
+      // Desabilitando o botão após a curtida e deixando cinza
+      likeButton.disabled = true;
+      likeButton.style.backgroundColor = '#ccc';
+      
+      // Criando as partículas de "likes" saindo
+      createLikeParticles();
     }
 
     // Adicionando evento de clique ao botão
@@ -367,4 +424,5 @@
   </script>
 </body>
 </html>
+
 
