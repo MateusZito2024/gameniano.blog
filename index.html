@@ -7,26 +7,160 @@
     <meta name="keywords" content="Gameniano, gameplays, jogos de terror, lives, YouTube, Twitch, criador de conteúdo">
     <title>Gameniano</title>
     <style>
-        /* Estilo do botão flutuante de curtidas */
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .content, .sidebar {
+                width: 90%;
+            }
+            iframe {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+
+        /* Estilo do botão de Inscreva-se */
+        .subscribe-button {
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        /* Estilo do botão da Twitch */
+        .twitch-button {
+            background-color: #9146ff;
+            color: #fff;
+        }
+
+        /* Estilo do botão do YouTube */
+        .youtube-button {
+            background-color: #ff0000;
+            color: #fff;
+        }
+
+        /* Estilo do botão do TikTok */
+        .tiktok-button {
+            background-color: #69C9D0;
+            color: white;
+        }
+
+        /* Estilo do botão do Kwai */
+        .kwai-button {
+            background-color: #FFA500;
+            color: white;
+        }
+
+        /* Estilo geral */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: #222;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .content {
+            flex: 2;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+            background: #ddd;
+            border-radius: 5px;
+            margin-left: 20px;
+            text-align: center;
+        }
+
+        .post {
+            margin-bottom: 20px;
+        }
+
+        .post iframe {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        .comment {
+            background-color: #f0f8ff;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        .comment p {
+            margin: 0;
+        }
+
+        .comment .author {
+            font-weight: bold;
+        }
+
+        .comment::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #f0f8ff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #222;
+            color: white;
+        }
+
+        /* Botão de curtida flutuante */
         .like-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
             background-color: #ff0000;
             color: white;
-            padding: 15px 20px;
             border: none;
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 16px;
             cursor: pointer;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
         }
+
         .like-button span {
             margin-left: 10px;
-            font-size: 16px;
         }
     </style>
 </head>
@@ -37,36 +171,34 @@
     
     <div class="container">
         <div class="content">
-            <h2>Última Gameplay</h2>
-            <iframe src="https://www.youtube.com/embed/fP9o4Wfl6zY" frameborder="0" allowfullscreen></iframe>
-            <p>Confira minha última gameplay cheia de sustos e adrenalina!</p>
-            <a href="https://www.youtube.com/@Gameniano" class="subscribe-button youtube-button">Inscreva-se no meu canal!</a>
+            <div class="post">
+                <h2>Última Gameplay</h2>
+                <iframe src="https://www.youtube.com/embed/fP9o4Wfl6zY" frameborder="0" allowfullscreen></iframe>
+                <p>Confira minha última gameplay cheia de sustos e adrenalina!</p>
+                <a href="https://www.youtube.com/@Gameniano" class="subscribe-button youtube-button">Inscreva-se no meu canal!</a>
+            </div>
         </div>
     </div>
 
-    <!-- Botão de Curtidas -->
-    <button class="like-button" onclick="addLike()">
-        👍 Curtir <span id="like-count">0</span>
+    <button class="like-button" onclick="incrementLikes()">
+        ❤️ Curtir <span id="like-count">0</span>
     </button>
-    
+
     <footer>
         <p>&copy; 2025 Gameniano - Todos os direitos reservados.</p>
     </footer>
 
     <script>
-        // Função para carregar o número de curtidas salvo no localStorage
-        document.addEventListener("DOMContentLoaded", function() {
-            let likes = localStorage.getItem("gameniano_likes") || 0;
-            document.getElementById("like-count").textContent = likes;
-        });
-
-        // Função para adicionar curtidas
-        function addLike() {
-            let likes = parseInt(localStorage.getItem("gameniano_likes")) || 0;
+        function incrementLikes() {
+            let likes = localStorage.getItem("likes") || 0;
             likes++;
-            localStorage.setItem("gameniano_likes", likes);
-            document.getElementById("like-count").textContent = likes;
+            localStorage.setItem("likes", likes);
+            document.getElementById("like-count").innerText = likes;
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("like-count").innerText = localStorage.getItem("likes") || 0;
+        });
     </script>
 </body>
 </html>
