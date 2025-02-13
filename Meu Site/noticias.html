@@ -1,113 +1,78 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notícias sobre MaxMRM</title>
+    <title>Notícias</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
+            background-color: #f8f8f8;
         }
-
+        .container {
+            width: 80%;
+            margin: auto;
+        }
         header {
             background-color: #333;
             color: white;
             padding: 15px 0;
             text-align: center;
+            font-size: 24px;
+            font-weight: bold;
         }
-
-        header h1 {
-            font-size: 2em;
-            margin: 0;
+        .news-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
-
-        .container {
-            width: 80%;
-            margin: 20px auto;
-        }
-
-        .news-article {
+        .news-card {
             background-color: white;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-
-        .news-article h2 {
-            font-size: 1.6em;
-            color: #2c3e50;
+        .news-card img {
+            width: 100%;
+            border-radius: 10px;
         }
-
-        .news-article p {
-            font-size: 1.1em;
-            line-height: 1.6;
+        .news-card h2 {
+            font-size: 20px;
+            margin: 10px 0;
         }
-
-        .news-article a {
-            color: #3498db;
+        .news-card a {
             text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
         }
-
-        .news-article a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            font-size: 0.9em;
-        }
-
-        footer a {
-            color: #3498db;
-        }
-
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>Notícias sobre MaxMRM</h1>
-    </header>
-
+    <header>Notícias Recentes</header>
     <div class="container">
-        <div class="news-article">
-            <h2>MaxMRM: O Influenciador que Conquista o Brasil</h2>
-            <p><strong>Publicado em:</strong> 13 de fevereiro de 2025</p>
-            <p>MaxMRM é um dos maiores influenciadores do Brasil, conquistando uma grande base de fãs com seus vídeos de gaming e lifestyle. Seu canal no YouTube, com milhões de inscritos, tem sido uma plataforma onde compartilha sua paixão por jogos, dicas e muito mais.</p>
-            <p>Ele também é conhecido por suas participações em eventos de eSports e pela interação constante com seus seguidores nas redes sociais. MaxMRM iniciou sua carreira em 2019 e rapidamente se destacou entre os criadores de conteúdo mais populares do país.</p>
-            <p>Para mais informações sobre sua trajetória, confira algumas fontes:</p>
-            <ul>
-                <li><a href="https://pt.famousbirthdays.com/people/maxmrm.html" target="_blank">Famous Birthdays - MaxMRM</a></li>
-                <li><a href="https://www.instagram.com/maxmrm/" target="_blank">Instagram de MaxMRM</a></li>
-                <li><a href="https://www.youtube.com/c/MaxMRM" target="_blank">Canal de YouTube de MaxMRM</a></li>
-            </ul>
+        <div class="news-section">
+            <div class="news-card">
+                <img src="https://via.placeholder.com/300" alt="Notícia 1">
+                <h2>Nova Descoberta Científica</h2>
+                <p>Pesquisadores revelam uma descoberta incrível que pode mudar o mundo. Saiba mais!</p>
+                <a href="https://www.bbc.com/portuguese" target="_blank">Leia mais</a>
+            </div>
+            <div class="news-card">
+                <img src="https://via.placeholder.com/300" alt="Notícia 2">
+                <h2>Lançamento de Tecnologia</h2>
+                <p>A mais nova inovação no mundo da tecnologia foi revelada. Veja os detalhes!</p>
+                <a href="https://www.tecmundo.com.br/" target="_blank">Leia mais</a>
+            </div>
+            <div class="news-card">
+                <img src="https://via.placeholder.com/300" alt="Notícia 3">
+                <h2>Recorde no Esporte</h2>
+                <p>Um atleta quebra um recorde mundial e impressiona o público. Descubra como!</p>
+                <a href="https://ge.globo.com/" target="_blank">Leia mais</a>
+            </div>
         </div>
-
-        <div class="news-article">
-            <h2>MaxMRM Lança Nova Série de Vídeos no YouTube</h2>
-            <p><strong>Publicado em:</strong> 10 de fevereiro de 2025</p>
-            <p>Em uma nova fase de sua carreira, MaxMRM anunciou o lançamento de uma série de vídeos focada em análises detalhadas de jogos populares, incluindo títulos como <em>Dead by Daylight</em>, <em>Silent Breath</em> e muito mais. A série promete dar aos fãs uma visão aprofundada de como ele aborda cada partida, além de trazer dicas e estratégias valiosas.</p>
-            <p>Com o sucesso de sua série anterior de gameplays de terror, MaxMRM aposta que a nova série será ainda mais popular, envolvendo uma audiência global. Os fãs podem esperar episódios semanais e discussões em tempo real durante as transmissões ao vivo.</p>
-            <p>Saiba mais sobre essa nova série em seus perfis nas redes sociais e no YouTube:</p>
-            <ul>
-                <li><a href="https://www.youtube.com/c/MaxMRM" target="_blank">Assista à nova série no YouTube</a></li>
-                <li><a href="https://www.twitter.com/maxmrm" target="_blank">Twitter de MaxMRM</a></li>
-            </ul>
-        </div>
-
     </div>
-
-    <footer>
-        <p>&copy; 2025 Meu Site | <a href="privacidade.html">Política de Privacidade</a> | <a href="contato.html">Contato</a></p>
-    </footer>
-
 </body>
 </html>
