@@ -305,7 +305,7 @@
     signInAnonymously(auth)
       .then(() => {
         console.log("Usuário autenticado anonimamente");
-        document.getElementById('likeBtn').disabled = false; // Habilita o botão após autenticação
+        enableLikeButton(); // Habilita o botão após a autenticação
       })
       .catch((error) => {
         console.error("Erro na autenticação:", error);
@@ -314,6 +314,11 @@
     // Referência ao botão e à contagem de curtidas
     const likeButton = document.getElementById("likeBtn");
     const likeCountDisplay = document.getElementById("likeCount");
+
+    // Função para habilitar o botão de curtir
+    function enableLikeButton() {
+      likeButton.disabled = false;
+    }
 
     // Função para pegar o ID do usuário anônimo
     function getUserId() {
@@ -380,3 +385,4 @@
   </script>
 </body>
 </html>
+
