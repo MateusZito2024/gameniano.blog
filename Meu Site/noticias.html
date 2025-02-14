@@ -222,33 +222,10 @@
       position: absolute;
       width: 50px; /* Tamanho do bichinho */
       height: 50px;
-      background-image: url('https://i.postimg.cc/8CsPP8YT/Picachu.gif'); /* Caminho do seu GIF */
+      background-image: url('https://i.postimg.cc/N0HjcVby/Duck.gif'); /* Caminho do seu GIF */
       background-size: cover;
       display: none; /* Inicialmente escondido */
-      animation: moveBichinho 120s infinite linear; /* Aumentei ainda mais o tempo da animação */
-    }
-
-    @keyframes moveBichinho {
-      0% {
-        left: 0;
-        top: 0;
-      }
-      25% {
-        left: 70%;
-        top: 10%;
-      }
-      50% {
-        left: 30%;
-        top: 70%;
-      }
-      75% {
-        left: 80%;
-        top: 40%;
-      }
-      100% {
-        left: 10%;
-        top: 80%;
-      }
+      transition: opacity 1s ease-out; /* Adiciona transição suave de opacidade */
     }
 
     .bichinho:active {
@@ -276,15 +253,16 @@
       bichinho.style.top = `${y}px`;
       bichinho.style.display = 'block'; // Exibe o bichinho
 
-      // O bichinho ficará visível por 15 segundos
+      // Espera 1 segundo antes de aplicar a animação de desaparecimento
+      setTimeout(() => {
+        bichinho.style.opacity = 0;  // Inicia a animação de desaparecimento suave
+      }, 14000); // Começa a desaparecer após 14 segundos
+
+      // Esconde o bichinho completamente após a animação de desaparecimento
       setTimeout(() => {
         bichinho.style.display = 'none'; // Esconde o bichinho completamente
-      }, 15000); // 15 segundos
-
-      // Adiciona um pequeno delay para ele começar a se mover
-      setTimeout(() => {
-        bichinho.style.transition = 'none'; // Não haverá transição de opacidade
-      }, 100);
+        bichinho.style.opacity = 1; // Restaura a opacidade para a próxima exibição
+      }, 15000); // 15 segundos (depois do desaparecimento)
     }
 
     // Chama a função de mostrar o bichinho em intervalos aleatórios
