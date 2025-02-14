@@ -205,5 +205,63 @@
         </section>
     </main>
 </body>
+<!-- Bichinho andando aleatoriamente pela tela -->
+<div id="bichinho">
+    <img src="https://i.postimg.cc/8CsPP8YT/Picachu.gif" alt="Bichinho">
+</div>
+
+<style>
+    /* Estilo para o bichinho */
+    #bichinho {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        width: 50px;
+        height: 50px;
+        z-index: 1000;
+        cursor: pointer;
+    }
+
+    #bichinho img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Animação de correr (efeito após clique) */
+    @keyframes correr {
+        0% {
+            transform: scale(1) translateX(0) translateY(0);
+        }
+        100% {
+            transform: scale(1.5) translateX(200px) translateY(-200px);
+        }
+    }
+</style>
+
+<script>
+    const bichinho = document.getElementById("bichinho");
+    const maxX = window.innerWidth - 50;  // Largura máxima da tela - tamanho do bichinho
+    const maxY = window.innerHeight - 50; // Altura máxima da tela - tamanho do bichinho
+
+    // Função para mover o bichinho aleatoriamente
+    function moverBichinho() {
+        const x = Math.random() * maxX; // Posição X aleatória
+        const y = Math.random() * maxY; // Posição Y aleatória
+
+        bichinho.style.left = `${x}px`;
+        bichinho.style.top = `${y}px`;
+    }
+
+    // Função para fazer o bichinho "correr" ao ser clicado
+    bichinho.addEventListener("click", function() {
+        bichinho.style.animation = "correr 0.5s ease-out";  // Animação de correr
+        setTimeout(() => {
+            bichinho.style.animation = ""; // Remove a animação após terminar
+        }, 500);
+    });
+
+    // Mover o bichinho aleatoriamente a cada 1.5 segundos
+    setInterval(moverBichinho, 1500);
+</script>
 
 </html>
