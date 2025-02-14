@@ -261,13 +261,13 @@
         bichinho.style.opacity = 1; // Restaura a opacidade para a próxima exibição
       }, 16000); // Esconde após 16 segundos
 
-      // Faz o bichinho andar pela tela em movimento contínuo
-      const moveInterval = setInterval(() => {
-        const xMovement = Math.random() * 4 - 2;  // Movimento aleatório de 4 pixels por vez
-        const yMovement = Math.random() * 4 - 2;
-        
+      // Função para mover o bichinho continuamente
+      function moveContinuously() {
         let currentX = parseFloat(bichinho.style.left || 0);
         let currentY = parseFloat(bichinho.style.top || 0);
+
+        const xMovement = Math.random() * 2 - 1;  // Movimento aleatório horizontal
+        const yMovement = Math.random() * 2 - 1;  // Movimento aleatório vertical
 
         // Atualiza a posição
         bichinho.style.left = `${currentX + xMovement}px`;
@@ -278,10 +278,12 @@
           currentX + xMovement < 0 || currentX + xMovement > window.innerWidth || 
           currentY + yMovement < 0 || currentY + yMovement > window.innerHeight
         ) {
-          clearInterval(moveInterval);
           bichinho.style.display = 'none'; // Desaparece ao sair da tela
         }
-      }, 50); // A cada 50ms o bichinho se move
+      }
+
+      // Move o bichinho continuamente
+      const moveInterval = setInterval(moveContinuously, 50);  // A cada 50ms o bichinho se move
     }
 
     // Chama a função de mover o bichinho em intervalos aleatórios
@@ -298,4 +300,3 @@
   </script>
 </body>
 </html>
-
