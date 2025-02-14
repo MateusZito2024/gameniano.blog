@@ -215,14 +215,14 @@
     body {
       margin: 0;
       padding: 0;
-      overflow: hidden; /* Impede a rolagem da página quando o bichinho se move */
+      overflow: auto; /* Permite rolar a página */
     }
 
     .bichinho {
       position: absolute;
       width: 50px; /* Tamanho do bichinho */
       height: 50px;
-      background-image: url('https://i.postimg.cc/8CsPP8YT/Picachu.gif'); /* Caminho do seu GIF */
+      background-image: url('seu-bichinho.gif'); /* Caminho do seu GIF */
       background-size: cover;
       display: none; /* Inicialmente escondido */
       animation: moveBichinho 120s infinite linear; /* Aumentei ainda mais o tempo da animação */
@@ -276,15 +276,15 @@
       bichinho.style.top = `${y}px`;
       bichinho.style.display = 'block'; // Exibe o bichinho
 
+      // O bichinho ficará visível por 15 segundos
+      setTimeout(() => {
+        bichinho.style.display = 'none'; // Esconde o bichinho completamente
+      }, 15000); // 15 segundos
+
       // Adiciona um pequeno delay para ele começar a se mover
       setTimeout(() => {
         bichinho.style.transition = 'none'; // Não haverá transição de opacidade
       }, 100);
-
-      // Esconde o bichinho quando ele sai da tela
-      setTimeout(() => {
-        bichinho.style.display = 'none'; // Esconde o bichinho completamente
-      }, 120000); // 120 segundos, o bichinho se movendo por 2 minutos antes de desaparecer
     }
 
     // Chama a função de mostrar o bichinho em intervalos aleatórios
@@ -301,4 +301,3 @@
   </script>
 </body>
 </html>
-
