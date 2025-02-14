@@ -221,10 +221,10 @@
       position: absolute;
       width: 50px; /* Tamanho do bichinho */
       height: 50px;
-      background-image: url('https://i.postimg.cc/8CsPP8YT/Picachu.gif'); /* Caminho do seu GIF */
+      background-image: url('seu-bichinho.gif'); /* Caminho do seu GIF */
       background-size: cover;
       display: none; /* Inicialmente escondido */
-      animation: moveBichinho 60s infinite linear; /* Aumentei o tempo da animação */
+      animation: moveBichinho 120s infinite linear; /* Aumentei ainda mais o tempo da animação */
     }
 
     @keyframes moveBichinho {
@@ -266,11 +266,11 @@
       bichinho.style.display = 'block'; // Exibe o bichinho
       setTimeout(() => {
         bichinho.style.display = 'none'; // Esconde o bichinho após um tempo
-      }, 5000); // O bichinho fica visível por 5 segundos
+      }, 8000); // O bichinho fica visível por 8 segundos
     }
 
     // Chama a função de mostrar o bichinho em intervalos aleatórios
-    setInterval(showBichinho, Math.random() * 10000 + 5000); // O bichinho aparece entre 5 e 15 segundos
+    setInterval(showBichinho, Math.random() * 20000 + 15000); // O bichinho aparece entre 15 e 35 segundos
 
     // Função para quando o bichinho for clicado
     bichinho.addEventListener('click', function() {
@@ -283,4 +283,3 @@
   </script>
 </body>
 </html>
-
