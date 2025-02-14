@@ -205,63 +205,82 @@
         </section>
     </main>
 </body>
-<!-- Bichinho andando aleatoriamente pela tela -->
-<div id="bichinho">
-    <img src="https://i.postimg.cc/8CsPP8YT/Picachu.gif" alt="Bichinho">
-</div>
-
-<style>
-    /* Estilo para o bichinho */
-    #bichinho {
-        position: fixed;
-        bottom: 10px;
-        left: 10px;
-        width: 50px;
-        height: 50px;
-        z-index: 1000;
-        cursor: pointer;
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movimento Fluído do Bichinho</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Impede a barra de rolagem */
     }
 
-    #bichinho img {
-        width: 100%;
-        height: auto;
+    .bichinho {
+      position: absolute;
+      width: 50px; /* Defina o tamanho do bichinho */
+      height: 50px; /* Ajuste o tamanho conforme necessário */
+      background-image: url('seu-bichinho.gif'); /* Coloque o caminho do seu GIF */
+      background-size: cover;
+      animation: moveBichinho 10s infinite linear; /* Animação fluída */
     }
 
-    /* Animação de correr (efeito após clique) */
-    @keyframes correr {
-        0% {
-            transform: scale(1) translateX(0) translateY(0);
-        }
-        100% {
-            transform: scale(1.5) translateX(200px) translateY(-200px);
-        }
-    }
-</style>
-
-<script>
-    const bichinho = document.getElementById("bichinho");
-    const maxX = window.innerWidth - 50;  // Largura máxima da tela - tamanho do bichinho
-    const maxY = window.innerHeight - 50; // Altura máxima da tela - tamanho do bichinho
-
-    // Função para mover o bichinho aleatoriamente
-    function moverBichinho() {
-        const x = Math.random() * maxX; // Posição X aleatória
-        const y = Math.random() * maxY; // Posição Y aleatória
-
-        bichinho.style.left = `${x}px`;
-        bichinho.style.top = `${y}px`;
+    @keyframes moveBichinho {
+      0% {
+        left: 0;
+        top: 0;
+      }
+      25% {
+        left: 80%;
+        top: 10%;
+      }
+      50% {
+        left: 20%;
+        top: 80%;
+      }
+      75% {
+        left: 90%;
+        top: 50%;
+      }
+      100% {
+        left: 0;
+        top: 90%;
+      }
     }
 
-    // Função para fazer o bichinho "correr" ao ser clicado
-    bichinho.addEventListener("click", function() {
-        bichinho.style.animation = "correr 0.5s ease-out";  // Animação de correr
-        setTimeout(() => {
-            bichinho.style.animation = ""; // Remove a animação após terminar
-        }, 500);
+    .bichinho:active {
+      animation-play-state: paused; /* Pausa a animação quando clicado */
+    }
+  </style>
+</head>
+<body>
+  <div class="bichinho"></div>
+
+  <script>
+    // Faz o bichinho se mover aleatoriamente em cada ciclo
+    const bichinho = document.querySelector('.bichinho');
+
+    function randomPosition() {
+      const x = Math.floor(Math.random() * window.innerWidth); 
+      const y = Math.floor(Math.random() * window.innerHeight); 
+      bichinho.style.left = `${x}px`;
+      bichinho.style.top = `${y}px`;
+    }
+
+    // Movimentação aleatória contínua
+    setInterval(randomPosition, 2000); // Atualiza a posição a cada 2 segundos
+
+    // Função para quando o bichinho for clicado
+    bichinho.addEventListener('click', function() {
+      bichinho.style.transition = "transform 0.5s ease";
+      bichinho.style.transform = `scale(1.5)`;  // O bichinho vai aumentar de tamanho
+      setTimeout(() => {
+        bichinho.style.transform = `scale(1)`;  // E depois volta ao tamanho original
+      }, 500);
     });
-
-    // Mover o bichinho aleatoriamente a cada 1.5 segundos
-    setInterval(moverBichinho, 1500);
-</script>
-
+  </script>
+</body>
 </html>
+
