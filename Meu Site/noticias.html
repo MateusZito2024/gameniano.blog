@@ -215,16 +215,15 @@
     body {
       margin: 0;
       padding: 0;
-      overflow: hidden; /* Impede a barra de rolagem */
     }
 
     .bichinho {
       position: absolute;
-      width: 50px; /* Defina o tamanho do bichinho */
-      height: 50px; /* Ajuste o tamanho conforme necessário */
-      background-image: url('https://i.postimg.cc/8CsPP8YT/Picachu.gif'); /* Coloque o caminho do seu GIF */
+      width: 50px; /* Tamanho do bichinho */
+      height: 50px;
+      background-image: url('seu-bichinho.gif'); /* Caminho do seu GIF */
       background-size: cover;
-      animation: moveBichinho 10s infinite linear; /* Animação fluída */
+      animation: moveBichinho 30s infinite linear; /* Aumentei o tempo da animação */
     }
 
     @keyframes moveBichinho {
@@ -270,7 +269,7 @@
     }
 
     // Movimentação aleatória contínua
-    setInterval(randomPosition, 2000); // Atualiza a posição a cada 2 segundos
+    setInterval(randomPosition, 4000); // Aumentei o intervalo para que o bichinho se mova com mais calma
 
     // Função para quando o bichinho for clicado
     bichinho.addEventListener('click', function() {
