@@ -357,7 +357,85 @@
         alert("Link copiado!");
     }
 </script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Última Atualização</title>
+    <style>
+        .update-container {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+        }
 
+        .update-box {
+            background: linear-gradient(135deg, #121212, #232323);
+            color: #0ff; /* Neon Cyan */
+            font-family: "Rajdhani", sans-serif; /* Fonte moderna e legível */
+            padding: 10px 20px;
+            border-radius: 6px;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+            border: 1px solid #0ff;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .update-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.8);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="update-container">
+        <div class="update-box">
+            Última atualização: <span id="last-modified">Carregando...</span>
+        </div>
+    </div>
+
+    <script>
+        async function getLastCommitDate() {
+            const repoOwner = "MateusZito2024"; // Seu usuário no GitHub
+            const repoName = "gameniano.blog"; // Seu repositório
+
+            try {
+                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/commits`);
+                const data = await response.json();
+
+                if (data.length > 0) {
+                    const lastCommitDate = new Date(data[0].commit.committer.date);
+                    document.getElementById("last-modified").textContent = formatarDataHora(lastCommitDate);
+                } else {
+                    document.getElementById("last-modified").textContent = "Não encontrado";
+                }
+            } catch (error) {
+                document.getElementById("last-modified").textContent = "Erro ao buscar";
+            }
+        }
+
+        function formatarDataHora(data) {
+            const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho",
+                           "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+            const dia = data.getDate();
+            const mes = meses[data.getMonth()];
+            const ano = data.getFullYear();
+            const horas = data.getHours().toString().padStart(2, '0');
+            const minutos = data.getMinutes().toString().padStart(2, '0');
+
+            return `${dia} de ${mes} de ${ano}, ${horas}:${minutos}`;
+        }
+
+        getLastCommitDate();
+    </script>
+
+</body>
+</html>
 
     <footer style="text-align: center; padding: 10px; background: #222; color: white;">
         <p>&copy; 2025 Gameniano - Todos os direitos reservados.</p>
@@ -698,83 +776,3 @@
         });
     });
 </script>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Última Atualização</title>
-    <style>
-        .update-container {
-            display: flex;
-            justify-content: flex-end;
-            padding: 20px;
-        }
-
-        .update-box {
-            background: linear-gradient(135deg, #121212, #232323);
-            color: #0ff; /* Neon Cyan */
-            font-family: "Rajdhani", sans-serif; /* Fonte moderna e legível */
-            padding: 10px 20px;
-            border-radius: 6px;
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-            border: 1px solid #0ff;
-            font-size: 16px;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .update-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 12px rgba(0, 255, 255, 0.8);
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <div class="update-container">
-        <div class="update-box">
-            Última atualização: <span id="last-modified">Carregando...</span>
-        </div>
-    </div>
-
-    <script>
-        async function getLastCommitDate() {
-            const repoOwner = "MateusZito2024"; // Seu usuário no GitHub
-            const repoName = "gameniano.blog"; // Seu repositório
-
-            try {
-                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/commits`);
-                const data = await response.json();
-
-                if (data.length > 0) {
-                    const lastCommitDate = new Date(data[0].commit.committer.date);
-                    document.getElementById("last-modified").textContent = formatarDataHora(lastCommitDate);
-                } else {
-                    document.getElementById("last-modified").textContent = "Não encontrado";
-                }
-            } catch (error) {
-                document.getElementById("last-modified").textContent = "Erro ao buscar";
-            }
-        }
-
-        function formatarDataHora(data) {
-            const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho",
-                           "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
-            const dia = data.getDate();
-            const mes = meses[data.getMonth()];
-            const ano = data.getFullYear();
-            const horas = data.getHours().toString().padStart(2, '0');
-            const minutos = data.getMinutes().toString().padStart(2, '0');
-
-            return `${dia} de ${mes} de ${ano}, ${horas}:${minutos}`;
-        }
-
-        getLastCommitDate();
-    </script>
-
-</body>
-</html>
-
