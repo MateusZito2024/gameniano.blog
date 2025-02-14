@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notícias - Meu Site</title>
+
     <style>
+        /* Reset de estilos */
         * {
             margin: 0;
             padding: 0;
@@ -13,18 +15,23 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #121212;
-            color: #e0e0e0;
+            color: #ddd;
+            line-height: 1.6;
         }
 
         header {
             background-color: #1e1e1e;
-            color: #ff4ddb;
+            color: #f2f2f2;
             padding: 20px;
             text-align: center;
-            font-size: 2em;
-            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #ff66b2;
         }
 
         main {
@@ -32,78 +39,189 @@
             max-width: 1200px;
             margin: 30px auto;
             padding: 20px;
-            background-color: #1c1c1c;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(255, 20, 147, 0.3);
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .noticia-principal img, .noticia img {
+        .noticia-principal img {
             width: 100%;
             height: auto;
-            border-radius: 10px;
+            border-radius: 8px;
         }
 
-        .noticia-principal h2, .noticia h3 {
-            color: #ff4ddb;
-            margin-top: 15px;
+        .noticia-principal h2 {
+            font-size: 2.5em;
+            margin-top: 20px;
+            color: #ff66b2;
         }
 
-        .noticia-principal p, .noticia p {
-            font-size: 1.1em;
-            line-height: 1.6;
+        .noticia-principal p {
+            font-size: 1.2em;
             margin-top: 10px;
         }
 
-        .noticia-principal a, .noticia a {
-            color: #ff4ddb;
+        .noticia-principal a {
+            color: #ff66b2;
             text-decoration: none;
             font-weight: bold;
-            display: inline-block;
             margin-top: 10px;
+            display: inline-block;
         }
 
         .noticias-destaque {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
             margin-top: 30px;
         }
 
         .noticia {
-            background-color: #222;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(255, 20, 147, 0.2);
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        .noticia a:hover {
+        .noticia:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .noticia img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .noticia h3 {
+            font-size: 1.8em;
+            margin-top: 15px;
+            color: #ff66b2;
+        }
+
+        .noticia p {
+            color: #bbb;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+
+        .noticia a {
+            color: #ff66b2;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .fontes {
+            margin-top: 40px;
+        }
+
+        .fontes h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #ff66b2;
+        }
+
+        .fontes ul {
+            list-style: none;
+        }
+
+        .fontes ul li {
+            margin-bottom: 10px;
+        }
+
+        .fontes ul li a {
+            color: #ff66b2;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        .fontes ul li a:hover {
             text-decoration: underline;
         }
 
+        /* Responsividade */
         @media (max-width: 768px) {
-            main {
-                width: 95%;
+            .noticias-destaque {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .noticia-principal h2 {
+                font-size: 2em;
+            }
+
+            .noticia h3 {
+                font-size: 1.5em;
+            }
+
+            .fontes ul li a {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .noticias-destaque {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .noticia-principal h2 {
+                font-size: 1.8em;
+            }
+
+            .noticia h3 {
+                font-size: 1.4em;
             }
         }
     </style>
 </head>
 
 <body>
-    <header>Últimas Notícias</header>
+
+    <header>
+        <h1>Últimas Notícias</h1>
+    </header>
+
     <main>
         <section class="noticia-principal">
             <img src="https://s2-oglobo.glbimg.com/6Fo6R8WChHFTHxUSu7dIPY4PCRk=/0x0:2000x1194/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/J/A/7HooRMReGgZDTS1HqG4A/arte.png" alt="Imagem Principal">
             <h2>Cinco Eventos Culturais Para Ficar de Olho em 2025!</h2>
-            <p>Entre os vários eventos que marcam o calendário cultural, este ano traz alguns com sabor especial...</p>
-            <a href="#">Leia mais...</a>
+            <p>Entre os vários eventos que marcam o calendário cultural, este ano que começa traz alguns com sabor especial. Em 2025, o Oscar pode ter um filme brasileiro concorrendo, o que não acontece desde o século passado. Ídolos de seus gêneros musicais, a diva pop Lady Gaga e os roqueiros do Oasis desembarcam no país após anos ausentes. Por outro lado, a Festa Literária Internacional de Paraty deve voltar a ocorrer no inverno, como nos tempos pré-pandemia, e Belém recebe um evento inédito às portas do verão: Amazônia para Sempre.</p>
+            <a href="https://oglobo.globo.com/cultura/noticia/2025/01/01/5-eventos-culturais-para-ficar-de-olho-em-2025-nao-publicar.ghtml">Leia mais...</a>
         </section>
+
         <section class="noticias-destaque">
+            <h2>Mais Notícias</h2>
+
+            <!-- Adicionar as notícias aqui -->
+            <!-- Exemplo de uma notícia -->
             <div class="noticia">
-                <img src="https://scansource.com.br/wp-content/uploads/2024/02/Imagem-Principal.jpg" alt="Notícia">
+                <img src="https://scansource.com.br/wp-content/uploads/2024/02/Imagem-Principal.jpg" alt="Imagem Principal">
                 <h3>Nova Tecnologia Revoluciona o Mercado</h3>
-                <p>Em 2025, espera-se que mais setores explorem a computação quântica...</p>
-                <a href="#">Leia mais...</a>
+                <p>Em 2025, espera-se que mais setores passem a explorar o poder da computação quântica, desde a criptografia avançada até a descoberta de novos medicamentos.</p>
+                <a href="https://revna.com.br/noticias-de-tecnologia/technology/as-grandes-tendencias-tecnologicas-para-2025-o-futuro-da-inovacao-ja-comecou#:~:text=Em%202025%2C%20espera%2Dse%20que,com%20algoritmos%20criptogr%C3%A1ficos%20mais%20sofisticados." target="_blank">Leia mais...</a>
             </div>
+
+            <!-- Mais notícias podem ser inseridas da mesma forma -->
+        </section>
+
+        <section class="fontes">
+            <h2>Fontes de Informação</h2>
+            <ul>
+                <li><a href="https://www.bbc.com/portuguese" target="_blank">BBC News Brasil</a></li>
+                <li><a href="https://g1.globo.com/" target="_blank">G1 Notícias</a></li>
+                <li><a href="https://www.uol.com.br/" target="_blank">UOL Notícias</a></li>
+            </ul>
         </section>
     </main>
 </body>
