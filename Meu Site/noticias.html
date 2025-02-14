@@ -15,24 +15,24 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1b1b1b, #232323);
+            color: #eaeaea;
+            padding: 0;
+            margin: 0;
         }
 
         header {
-            background: linear-gradient(90deg, #6a1b9a, #8e24aa);
-            color: white;
-            padding: 20px;
+            background-color: #121212;
+            color: #fff;
+            padding: 30px;
             text-align: center;
-            border-bottom: 2px solid #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         header h1 {
-            font-size: 3rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         main {
@@ -40,47 +40,36 @@
             max-width: 1200px;
             margin: 30px auto;
             padding: 20px;
-            background-color: #1e1e1e;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
         }
 
         .noticia-principal img {
             width: 100%;
             height: auto;
             border-radius: 10px;
-            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
         .noticia-principal h2 {
-            font-size: 2.8rem;
+            font-size: 2.8em;
             margin-top: 20px;
-            color: #f3f3f3;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            color: #ff007f;
         }
 
         .noticia-principal p {
-            font-size: 1.2rem;
-            margin-top: 15px;
-            color: #c0c0c0;
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-top: 10px;
         }
 
         .noticia-principal a {
-            display: inline-block;
-            color: #f3f3f3;
+            color: #ff007f;
             text-decoration: none;
             font-weight: bold;
             margin-top: 10px;
-            padding: 8px 12px;
-            border: 2px solid #8e24aa;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .noticia-principal a:hover {
-            background-color: #8e24aa;
-            color: #fff;
-            transform: translateY(-5px);
+            display: inline-block;
         }
 
         .noticias-destaque {
@@ -91,51 +80,42 @@
         }
 
         .noticia {
-            background-color: #2c2c2c;
+            background-color: #282828;
             border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
+        }
+
+        .noticia:hover {
+            transform: translateY(-5px);
         }
 
         .noticia img {
             width: 100%;
             height: auto;
             border-radius: 10px;
-            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
         .noticia h3 {
-            font-size: 1.9rem;
+            font-size: 2em;
             margin-top: 15px;
-            color: #fff;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            color: #ff007f;
         }
 
         .noticia p {
-            color: #c0c0c0;
+            color: #bbb;
             margin-top: 10px;
-            font-size: 1.1rem;
+            font-size: 1.1em;
         }
 
         .noticia a {
-            color: #8e24aa;
+            color: #ff007f;
             text-decoration: none;
             font-weight: bold;
             margin-top: 10px;
             display: inline-block;
-            transition: all 0.3s ease;
-        }
-
-        .noticia a:hover {
-            color: #fff;
-            background-color: #8e24aa;
-            transform: translateY(-3px);
-        }
-
-        .noticia:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
         }
 
         .fontes {
@@ -143,9 +123,9 @@
         }
 
         .fontes h2 {
-            font-size: 1.8rem;
+            font-size: 2em;
             margin-bottom: 20px;
-            color: #f3f3f3;
+            color: #ff007f;
         }
 
         .fontes ul {
@@ -157,32 +137,45 @@
         }
 
         .fontes ul li a {
-            color: #8e24aa;
+            color: #ff007f;
             text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
+            font-size: 1.2em;
         }
 
         .fontes ul li a:hover {
-            color: #fff;
+            text-decoration: underline;
         }
 
         /* Responsividade */
-        @media screen and (max-width: 768px) {
+        @media (max-width: 768px) {
+            .noticias-destaque {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            header h1 {
+                font-size: 2.2em;
+            }
+
+            .noticia-principal h2 {
+                font-size: 2em;
+            }
+
+            .noticia h3 {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
             .noticias-destaque {
                 grid-template-columns: 1fr;
             }
 
-            header h1 {
-                font-size: 2rem;
-            }
-
             .noticia-principal h2 {
-                font-size: 2rem;
+                font-size: 1.8em;
             }
 
             .noticia h3 {
-                font-size: 1.6rem;
+                font-size: 1.6em;
             }
         }
     </style>
@@ -214,32 +207,17 @@
                 <a href="https://revna.com.br/noticias-de-tecnologia/technology/as-grandes-tendencias-tecnologicas-para-2025-o-futuro-da-inovacao-ja-comecou#:~:text=Em%202025%2C%20espera%2Dse%20que,com%20algoritmos%20criptogr%C3%A1ficos%20mais%20sofisticados." target="_blank">Leia mais...</a>
             </div>
 
-            <div class="noticia">
-                <img src="https://tpc.googlesyndication.com/simgad/4097638412811826206?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&rs=AOga4qlJ-E4-D7AcCpSfCbjIWOFUFaAYAA" 
-     alt="Imagem Principal">
-                <h3>11 Artistas em Ascensão na Música Para Ficar de Olho em 2025!</h3>
-                <p>Talentos frescos prometem marcar a indústria em 2025...</p>
-                <a href="https://www.cnnbrasil.com.br/entretenimento/11-artistas-em-ascensao-na-musica-para-ficar-de-olho-em-2025/" target="_blank">Leia mais...</a>
-            </div>
-
-            <div class="noticia">
-                <img src="https://s2-g1.glbimg.com/voKI7dvNNtSmxzpoTW168wN9pmA=/0x0:770x420/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2025/C/s/fRCW4iQ429J1P2TseXng/carnaval.jpg" 
-     alt="Imagem Principal">
-                <h3>Programação dos Desfiles dos Blocos do Pré-carnaval de Belo Horizonte</h3>
-                <p>Segundo a prefeitura, o pré-carnaval é de 15 a 28 de fevereiro...</p>
-                <a href="https://g1.globo.com/mg/minas-gerais/noticia/2025/02/01/programacao-dos-desfiles-dos-blocos-do-pre-carnaval-de-bh.ghtml" target="_blank">Leia mais...</a>
-            </div>
+            <!-- Adicione outras notícias aqui com o mesmo estilo -->
         </section>
 
         <section class="fontes">
-            <h2>Fontes:</h2>
+            <h2>Fontes de Informação</h2>
             <ul>
-                <li><a href="https://oglobo.globo.com/cultura/noticia/2025/01/01/5-eventos-culturais-para-ficar-de-olho-em-2025-nao-publicar.ghtml">O Globo</a></li>
-                <li><a href="https://www.cnnbrasil.com.br/entretenimento/11-artistas-em-ascensao-na-musica-para-ficar-de-olho-em-2025/">CNN Brasil</a></li>
-                <li><a href="https://g1.globo.com/mg/minas-gerais/noticia/2025/02/01/programacao-dos-desfiles-dos-blocos-do-pre-carnaval-de-bh.ghtml">G1</a></li>
+                <li><a href="https://www.bbc.com/portuguese" target="_blank">BBC News Brasil</a></li>
+                <li><a href="https://g1.globo.com/" target="_blank">G1 Notícias</a></li>
+                <li><a href="https://www.uol.com.br/" target="_blank">UOL Notícias</a></li>
             </ul>
         </section>
-
     </main>
 
 </body>
