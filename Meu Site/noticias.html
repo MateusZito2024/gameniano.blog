@@ -235,7 +235,7 @@
   <script>
     const bichinho = document.querySelector('.bichinho');
 
-    // Função para gerar uma posição aleatória inicial
+    // Função para gerar uma posição aleatória
     function getRandomPosition() {
       const x = Math.random() * (window.innerWidth - 50);  // Largura da tela
       const y = Math.random() * (window.innerHeight - 50); // Altura da tela
@@ -245,10 +245,12 @@
     // Função para mover o bichinho
     function moveBichinho() {
       const { x, y } = getRandomPosition();  // Posição aleatória
-
       bichinho.style.left = `${x}px`;
       bichinho.style.top = `${y}px`;
       bichinho.style.display = 'block'; // Exibe o bichinho
+
+      // Começa o movimento do bichinho
+      moveBichinhoSmoothly(x, y);
 
       // Após 15 segundos, inicia a animação de desaparecer suavemente
       setTimeout(() => {
@@ -260,30 +262,39 @@
         bichinho.style.display = 'none';
         bichinho.style.opacity = 1; // Restaura a opacidade para a próxima exibição
       }, 16000); // Esconde após 16 segundos
+    }
 
-      // Função para mover o bichinho continuamente
-      function moveContinuously() {
-        let currentX = parseFloat(bichinho.style.left || 0);
-        let currentY = parseFloat(bichinho.style.top || 0);
+    // Função para mover o bichinho suavemente até o destino
+    function moveBichinhoSmoothly(startX, startY) {
+      const endX = Math.random() * (window.innerWidth - 50); // Novo ponto final no eixo X
+      const endY = Math.random() * (window.innerHeight - 50); // Novo ponto final no eixo Y
 
-        const xMovement = Math.random() * 2 - 1;  // Movimento aleatório horizontal
-        const yMovement = Math.random() * 2 - 1;  // Movimento aleatório vertical
+      const duration = 10000; // Duração do movimento (10 segundos)
 
-        // Atualiza a posição
-        bichinho.style.left = `${currentX + xMovement}px`;
-        bichinho.style.top = `${currentY + yMovement}px`;
+      let startTime;
 
-        // Checa se o bichinho está fora da tela e, se estiver, para o movimento
-        if (
-          currentX + xMovement < 0 || currentX + xMovement > window.innerWidth || 
-          currentY + yMovement < 0 || currentY + yMovement > window.innerHeight
-        ) {
-          bichinho.style.display = 'none'; // Desaparece ao sair da tela
+      // Função de animação
+      function animate(time) {
+        if (!startTime) startTime = time;
+        const progress = (time - startTime) / duration;
+
+        if (progress < 1) {
+          // Calcula a posição intermediária com base na progressão
+          const x = startX + (endX - startX) * progress;
+          const y = startY + (endY - startY) * progress;
+          bichinho.style.left = `${x}px`;
+          bichinho.style.top = `${y}px`;
+
+          requestAnimationFrame(animate);
+        } else {
+          // Após o movimento, redefine a posição final
+          bichinho.style.left = `${endX}px`;
+          bichinho.style.top = `${endY}px`;
+          moveBichinhoSmoothly(endX, endY); // Inicia outro movimento
         }
       }
 
-      // Move o bichinho continuamente
-      const moveInterval = setInterval(moveContinuously, 50);  // A cada 50ms o bichinho se move
+      requestAnimationFrame(animate); // Inicia a animação
     }
 
     // Chama a função de mover o bichinho em intervalos aleatórios
@@ -300,4 +311,5 @@
   </script>
 </body>
 </html>
+
 
