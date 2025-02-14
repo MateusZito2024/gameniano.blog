@@ -132,4 +132,109 @@
         <p>&copy; 2025 Gameniano. Todos os direitos reservados.</p>
     </footer>
 </body>
+    <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movimento Fluído do Bichinho</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: auto; /* Permite rolar a página */
+    }
+
+    .bichinho {
+      position: absolute;
+      width: 50px; /* Tamanho do bichinho */
+      height: 50px;
+      background-image: url('https://i.postimg.cc/N0HjcVby/Duck.gif'); /* Caminho do seu GIF */
+      background-size: cover;
+      display: none; /* Inicialmente escondido */
+      transition: opacity 1s ease-out; /* Transição suave de opacidade */
+    }
+  </style>
+</head>
+<body>
+  <div class="bichinho"></div>
+
+  <script>
+    const bichinho = document.querySelector('.bichinho');
+
+    // Função para gerar uma posição aleatória
+    function getRandomPosition() {
+      const x = Math.random() * (window.innerWidth - 50);  // Largura da tela
+      const y = Math.random() * (window.innerHeight - 50); // Altura da tela
+      return { x, y };
+    }
+
+    // Função para mover o bichinho
+    function moveBichinho() {
+      const { x, y } = getRandomPosition();  // Posição aleatória
+      bichinho.style.left = `${x}px`;
+      bichinho.style.top = `${y}px`;
+      bichinho.style.display = 'block'; // Exibe o bichinho
+
+      // Começa o movimento do bichinho
+      moveBichinhoSmoothly(x, y);
+
+      // Após 15 segundos, inicia a animação de desaparecer suavemente
+      setTimeout(() => {
+        bichinho.style.opacity = 0;
+      }, 15000); // Começa a desaparecer após 15 segundos
+
+      // Esconde o bichinho completamente após desaparecer
+      setTimeout(() => {
+        bichinho.style.display = 'none';
+        bichinho.style.opacity = 1; // Restaura a opacidade para a próxima exibição
+      }, 16000); // Esconde após 16 segundos
+    }
+
+    // Função para mover o bichinho suavemente até o destino
+    function moveBichinhoSmoothly(startX, startY) {
+      const endX = Math.random() * (window.innerWidth - 50); // Novo ponto final no eixo X
+      const endY = Math.random() * (window.innerHeight - 50); // Novo ponto final no eixo Y
+
+      const duration = 10000; // Duração do movimento (10 segundos)
+
+      let startTime;
+
+      // Função de animação
+      function animate(time) {
+        if (!startTime) startTime = time;
+        const progress = (time - startTime) / duration;
+
+        if (progress < 1) {
+          // Calcula a posição intermediária com base na progressão
+          const x = startX + (endX - startX) * progress;
+          const y = startY + (endY - startY) * progress;
+          bichinho.style.left = `${x}px`;
+          bichinho.style.top = `${y}px`;
+
+          requestAnimationFrame(animate);
+        } else {
+          // Após o movimento, redefine a posição final
+          bichinho.style.left = `${endX}px`;
+          bichinho.style.top = `${endY}px`;
+          moveBichinhoSmoothly(endX, endY); // Inicia outro movimento
+        }
+      }
+
+      requestAnimationFrame(animate); // Inicia a animação
+    }
+
+    // Chama a função de mover o bichinho em intervalos aleatórios
+    setInterval(moveBichinho, Math.random() * 20000 + 15000); // Aparece a cada 15 a 35 segundos
+
+    // Função para quando o bichinho for clicado
+    bichinho.addEventListener('click', function() {
+      bichinho.style.transition = "transform 0.5s ease";
+      bichinho.style.transform = `scale(1.5)`;  // O bichinho vai aumentar de tamanho
+      setTimeout(() => {
+        bichinho.style.transform = `scale(1)`;  // E depois volta ao tamanho original
+      }, 500);
+    });
+  </script>
+</body>
 </html>
