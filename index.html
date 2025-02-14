@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Gameniano, criador de conteúdo, gameplays de jogos de terror e lives na Twitch. Siga e acompanhe!">
     <meta name="keywords" content="Gameniano, gameplays, jogos de terror, lives, YouTube, Twitch, criador de conteúdo">
-    <title>Gameniano</title>
-    <button id="toggleAcessibilidade">🔊 Ativar Acessibilidade</button>
+    <title>Gameniano</title> <button id="toggleAcessibilidade">🔊 Ativar Acessibilidade</button>
     <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -221,40 +220,6 @@
         navigator.clipboard.writeText("https://www.gameniano.com.br");
         alert("Link copiado!");
     }
-    <script>
-    const synth = window.speechSynthesis;
-    let acessibilidadeAtivada = false; // Começa desativado
-
-    function falarTexto(texto) {
-        if (!acessibilidadeAtivada || synth.speaking) return;
-        const fala = new SpeechSynthesisUtterance(texto);
-        fala.lang = "pt-BR"; // Define o idioma para português do Brasil
-        synth.speak(fala);
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const elementosParaLer = document.querySelectorAll("h1, h2, h3, p, a, button, input, textarea, label");
-        const botaoToggle = document.getElementById("toggleAcessibilidade");
-
-        elementosParaLer.forEach((elemento) => {
-            elemento.addEventListener("mouseenter", function () {
-                falarTexto(elemento.innerText);
-            });
-
-            elemento.addEventListener("touchstart", function () {
-                falarTexto(elemento.innerText);
-            });
-        });
-
-        // Ativar/Desativar acessibilidade ao clicar no botão
-        botaoToggle.addEventListener("click", function () {
-            acessibilidadeAtivada = !acessibilidadeAtivada;
-            botaoToggle.innerText = acessibilidadeAtivada ? "🔇 Desativar Acessibilidade" : "🔊 Ativar Acessibilidade";
-            synth.cancel(); // Para qualquer fala ativa ao alternar
-        });
-    });
-</script>
-
 </script>
 
 
@@ -555,3 +520,36 @@
   </script>
 </body>
 </html>
+<script>
+    const synth = window.speechSynthesis;
+    let acessibilidadeAtivada = false; // Começa desativado
+
+    function falarTexto(texto) {
+        if (!acessibilidadeAtivada || synth.speaking) return;
+        const fala = new SpeechSynthesisUtterance(texto);
+        fala.lang = "pt-BR"; // Define o idioma para português do Brasil
+        synth.speak(fala);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const elementosParaLer = document.querySelectorAll("h1, h2, h3, p, a, button, input, textarea, label");
+        const botaoToggle = document.getElementById("toggleAcessibilidade");
+
+        elementosParaLer.forEach((elemento) => {
+            elemento.addEventListener("mouseenter", function () {
+                falarTexto(elemento.innerText);
+            });
+
+            elemento.addEventListener("touchstart", function () {
+                falarTexto(elemento.innerText);
+            });
+        });
+
+        // Ativar/Desativar acessibilidade ao clicar no botão
+        botaoToggle.addEventListener("click", function () {
+            acessibilidadeAtivada = !acessibilidadeAtivada;
+            botaoToggle.innerText = acessibilidadeAtivada ? "🔇 Desativar Acessibilidade" : "🔊 Ativar Acessibilidade";
+            synth.cancel(); // Para qualquer fala ativa ao alternar
+        });
+    });
+</script>
