@@ -3,58 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre o Gameniano</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Sobre - Gameniano</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
+    <header class="hero">
         <h1>Sobre o Gameniano</h1>
-        <p>O portal definitivo para os apaixonados por games.</p>
+        <p>O melhor portal de notícias e entretenimento gamer</p>
     </header>
 
-    <section class="about">
-        <div class="content">
-            <img src="https://scansource.com.br/wp-content/uploads/2024/02/Imagem-Principal.jpg" alt="Gameniano">
-            <div class="text">
-                <h2>Nossa História</h2>
-                <p>O Gameniano nasceu da paixão por videogames e do desejo de compartilhar notícias, análises e curiosidades sobre o mundo dos games. Hoje, somos referência para gamers que buscam informação de qualidade.</p>
+    <main>
+        <section class="historia">
+            <h2>Nossa História</h2>
+            <p>O Gameniano nasceu da paixão por games e notícias relevantes. Nosso objetivo é trazer as últimas novidades do mundo dos jogos, análises detalhadas e coberturas completas dos principais eventos do setor.</p>
+        </section>
+
+        <section class="missao-visao">
+            <div class="missao">
+                <h2>Missão</h2>
+                <p>Fornecer informações confiáveis e atualizadas sobre o universo gamer, sempre com qualidade e imparcialidade.</p>
             </div>
-        </div>
-    </section>
+            <div class="visao">
+                <h2>Visão</h2>
+                <p>Ser referência em notícias de games e cultura geek, conectando a comunidade de jogadores com conteúdo inovador.</p>
+            </div>
+        </section>
 
-    <section class="mission">
-        <h2>Nossa Missão</h2>
-        <p>Levar notícias atualizadas, análises e conteúdos exclusivos para a comunidade gamer com responsabilidade e paixão.</p>
-    </section>
-
-    <section class="impact">
-        <h2>Nosso Impacto</h2>
-        <p>Com milhares de leitores diários, o Gameniano influencia e informa a comunidade gamer, trazendo novidades e tendências do universo dos jogos.</p>
-    </section>
-
-    <section class="contact">
-        <h2>Entre em Contato</h2>
-        <form action="https://formsubmit.co/pauloslashsantos13@gmail.com" method="POST">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="name" required>
-            
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="message" rows="5" required></textarea>
-            
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
+        <section class="contato">
+            <h2>Entre em Contato</h2>
+            <form action="https://formsubmit.co/pauloslashsantos13@gmail.com" method="POST">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+                
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" required></textarea>
+                
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2025 Gameniano. Todos os direitos reservados.</p>
     </footer>
-
 </body>
 </html>
