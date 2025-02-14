@@ -705,23 +705,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Última Atualização</title>
     <style>
-        #last-modified-box {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            font-size: 14px;
-            color: #ccc;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-family: sans-serif;
+        .update-container {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+
+        .update-box {
+            background: linear-gradient(135deg, #121212, #232323);
+            color: #0ff; /* Neon Cyan */
+            font-family: "Rajdhani", sans-serif; /* Fonte moderna e legível */
+            padding: 10px 20px;
+            border-radius: 6px;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+            border: 1px solid #0ff;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .update-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.8);
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div id="last-modified-box">
-        Última atualização: <span id="last-modified">Carregando...</span>
+    <div class="update-container">
+        <div class="update-box">
+            Última atualização: <span id="last-modified">Carregando...</span>
+        </div>
     </div>
 
     <script>
