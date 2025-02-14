@@ -696,4 +696,57 @@
             synth.cancel(); // Para qualquer fala ativa ao alternar
         });
     });
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Última Atualização</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .update-box {
+            display: inline-block;
+            background: linear-gradient(135deg, #1e1e1e, #333);
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .update-box span {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="update-box">
+        Última atualização: <span id="last-modified"></span>
+    </div>
+
+    <script>
+        function formatarData(data) {
+            const meses = [
+                "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+                "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+            ];
+            let dia = data.getDate();
+            let mes = meses[data.getMonth()];
+            let ano = data.getFullYear();
+            return `${dia} de ${mes} de ${ano}`;
+        }
+
+        document.getElementById("last-modified").textContent = formatarData(new Date(document.lastModified));
+    </script>
+
+</body>
+</html>
 </script>
