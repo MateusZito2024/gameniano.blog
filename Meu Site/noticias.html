@@ -225,11 +225,7 @@
       background-image: url('https://i.postimg.cc/N0HjcVby/Duck.gif'); /* Caminho do seu GIF */
       background-size: cover;
       display: none; /* Inicialmente escondido */
-      transition: opacity 1s ease-out; /* Adiciona transição suave de opacidade */
-    }
-
-    .bichinho:active {
-      animation-play-state: paused; /* Pausa a animação quando clicado */
+      transition: opacity 1s ease-out; /* Transição suave de opacidade */
     }
   </style>
 </head>
@@ -246,27 +242,50 @@
       return { x, y };
     }
 
-    // Função para exibir o bichinho aleatoriamente em intervalos
-    function showBichinho() {
+    // Função para mover o bichinho
+    function moveBichinho() {
       const { x, y } = getRandomPosition();  // Posição aleatória
+
       bichinho.style.left = `${x}px`;
       bichinho.style.top = `${y}px`;
       bichinho.style.display = 'block'; // Exibe o bichinho
 
-      // Espera 1 segundo antes de aplicar a animação de desaparecimento
+      // Após 15 segundos, inicia a animação de desaparecer suavemente
       setTimeout(() => {
-        bichinho.style.opacity = 0;  // Inicia a animação de desaparecimento suave
-      }, 14000); // Começa a desaparecer após 14 segundos
+        bichinho.style.opacity = 0;
+      }, 15000); // Começa a desaparecer após 15 segundos
 
-      // Esconde o bichinho completamente após a animação de desaparecimento
+      // Esconde o bichinho completamente após desaparecer
       setTimeout(() => {
-        bichinho.style.display = 'none'; // Esconde o bichinho completamente
+        bichinho.style.display = 'none';
         bichinho.style.opacity = 1; // Restaura a opacidade para a próxima exibição
-      }, 15000); // 15 segundos (depois do desaparecimento)
+      }, 16000); // Esconde após 16 segundos
+
+      // Faz o bichinho andar pela tela em movimento contínuo
+      const moveInterval = setInterval(() => {
+        const xMovement = Math.random() * 4 - 2;  // Movimento aleatório de 4 pixels por vez
+        const yMovement = Math.random() * 4 - 2;
+        
+        let currentX = parseFloat(bichinho.style.left || 0);
+        let currentY = parseFloat(bichinho.style.top || 0);
+
+        // Atualiza a posição
+        bichinho.style.left = `${currentX + xMovement}px`;
+        bichinho.style.top = `${currentY + yMovement}px`;
+
+        // Checa se o bichinho está fora da tela e, se estiver, para o movimento
+        if (
+          currentX + xMovement < 0 || currentX + xMovement > window.innerWidth || 
+          currentY + yMovement < 0 || currentY + yMovement > window.innerHeight
+        ) {
+          clearInterval(moveInterval);
+          bichinho.style.display = 'none'; // Desaparece ao sair da tela
+        }
+      }, 50); // A cada 50ms o bichinho se move
     }
 
-    // Chama a função de mostrar o bichinho em intervalos aleatórios
-    setInterval(showBichinho, Math.random() * 20000 + 15000); // O bichinho aparece entre 15 e 35 segundos
+    // Chama a função de mover o bichinho em intervalos aleatórios
+    setInterval(moveBichinho, Math.random() * 20000 + 15000); // Aparece a cada 15 a 35 segundos
 
     // Função para quando o bichinho for clicado
     bichinho.addEventListener('click', function() {
@@ -279,3 +298,4 @@
   </script>
 </body>
 </html>
+
