@@ -5,7 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Gameniano, criador de conteúdo, gameplays de jogos de terror e lives na Twitch. Siga e acompanhe!">
     <meta name="keywords" content="Gameniano, gameplays, jogos de terror, lives, YouTube, Twitch, criador de conteúdo">
-    <title>Gameniano</title> <button id="toggleAcessibilidade">🔊 Ativar Acessibilidade</button>
+    <title>Gameniano</title> 
+    <button id="toggleAcessibilidade">🔊 Ativar Acessibilidade</button>
+    #toggleAcessibilidade {
+    position: fixed;
+    left: 10px; /* Distância da borda esquerda */
+    bottom: 10px; /* Distância da borda inferior */
+    background-color: #007bff; /* Cor azul padrão */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#toggleAcessibilidade:hover {
+    background-color: #0056b3; /* Azul mais escuro no hover */
+}
+
     <!DOCTYPE html>
 <html lang="pt-br">
 <head>
