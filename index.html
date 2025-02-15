@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Gameniano, criador de conteúdo, gameplays de jogos de terror e lives na Twitch. Siga e acompanhe!">
-  <meta name="keywords" content="Gameniano, gameplays, jogos de terror, lives, YouTube, Twitch, criador de conteúdo">
-  <meta name="keywords" content="gameplay, terror, Dead by Daylight, Silent Breath, Gameniano, Mateus, jogando com Spirit, dicas de jogo, gameplays intensas, sustos, jogos de terror, gameplays de horror, gameplays ao vivo, gameplays de survival, vídeos de jogos, jogos de ação, dicas de Dead by Daylight, jogando com killers, canal de gameplays, jogos de suspense, jogos assustadores, terror e diversão, Gameniano blog, conteúdo de jogo, Twitch, YouTube gameplays, games online, gamer brasileiro, gameplay Gameniano">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gameniano, criador de conteúdo, gameplays de jogos de terror e lives na Twitch. Siga e acompanhe!" />
+  <meta name="keywords" content="Gameniano, gameplays, jogos de terror, lives, YouTube, Twitch, criador de conteúdo" />
+  <meta name="keywords" content="gameplay, terror, Dead by Daylight, Silent Breath, Gameniano, Mateus, jogando com Spirit, dicas de jogo, gameplays intensas, sustos, jogos de terror, gameplays de horror, gameplays ao vivo, gameplays de survival, vídeos de jogos, jogos de ação, dicas de Dead by Daylight, jogando com killers, canal de gameplays, jogos de suspense, jogos assustadores, terror e diversão, Gameniano blog, conteúdo de jogo, Twitch, YouTube gameplays, games online, gamer brasileiro, gameplay Gameniano" />
   <title>Gameniano Notícias</title>
   <link rel="icon" href="https://i.postimg.cc/2SnKzzCM/OUTROCONTROLE-removebg-preview.png" sizes="128x128" />
 
-  <!-- Botão de Acessibilidade -->
+  <!-- Botão de Acessibilidade – mantido para PC -->
   <button id="toggleAcessibilidade">🔊 Acessibilidade</button>
   <style>
-    /* Estilos do botão de acessibilidade */
+    /* Estilos do botão de acessibilidade (para PC e mobile) */
     #toggleAcessibilidade {
       position: fixed;
       left: 10px;
@@ -78,37 +78,21 @@
       display: inline-block;
       cursor: pointer;
     }
-    .twitch-button {
-      background-color: #9146ff;
-      color: #fff;
-    }
-    .youtube-button {
-      background-color: #ff0000;
-      color: #fff;
-    }
-    .tiktok-button {
-      background-color: #69C9D0;
-      color: white;
-    }
-    .kwai-button {
-      background-color: #FFA500;
-      color: white;
-    }
+    .twitch-button { background-color: #9146ff; color: #fff; }
+    .youtube-button { background-color: #ff0000; color: #fff; }
+    .tiktok-button { background-color: #69C9D0; color: white; }
+    .kwai-button { background-color: #FFA500; color: white; }
   </style>
   
   <!-- Responsividade e ajustes mobile -->
   <style>
+    /* Estilos comuns para mobile (até 768px) */
     @media (max-width: 768px) {
-      /* Mantém os itens do menu lado a lado, igual à versão PC */
-      nav ul {
-        display: inline-block; /* não muda para block */
-      }
-      nav ul li {
-        display: inline;
-        margin-right: 10px;
-      }
+      /* Menu: manter lado a lado */
+      nav ul { display: inline-block; }
+      nav ul li { display: inline; margin-right: 10px; }
       
-      /* Container principal e blocos */
+      /* Containers e iframes responsivos */
       .container {
         flex-direction: column;
         align-items: center;
@@ -124,43 +108,34 @@
         margin: 0 auto;
         box-sizing: border-box;
       }
-      
-      /* Iframes responsivos mantendo a proporção 16:9 */
       .post iframe {
         width: 100% !important;
         height: auto !important;
         aspect-ratio: 16 / 9;
       }
       
-      /* --- Ajuste 1: Corrige a posição dos blocos Milestone e Sidebar na versão mobile --- */
-      div[style*="position: absolute; top: 20px; left: 20px; right: 20px;"] {
+      /* --- Ajuste 1: Corrigindo o alinhamento do bloco "Ultrapassamos 140 mil assinantes..." --- */
+      /* Seleciona o container que possui o estilo inline com position absolute */
+      body > div[style*="position: absolute;"][style*="left: 20px;"][style*="right: 20px;"] {
         position: static !important;
+        display: block !important;
+        margin: 20px auto !important;
         left: 0 !important;
         right: 0 !important;
         flex-direction: column !important;
-        margin: 20px auto !important;
-        padding: 0 10px;
-        width: 100% !important;
-        max-width: 600px;
-        box-sizing: border-box;
       }
-      
-      /* Já os blocos individuais (Milestone e Sidebar) foram unificados para ocupar 100% */
+      /* Força a Milestone e a Sidebar a se adaptarem em coluna */
       .gameniano-milestone, .sidebar {
         width: 100% !important;
         max-width: 600px !important;
-        margin: 0 auto 20px auto !important;
-      }
-      .gameniano-milestone {
+        margin: 10px auto !important;
         height: auto !important;
       }
       
-      /* Reduz o padding do update-container */
-      .update-container {
-        padding: 10px !important;
-      }
+      /* Ajusta o padding do update-container */
+      .update-container { padding: 10px !important; }
       
-      /* Ajusta o botão de curtir */
+      /* Ajusta o botão de curtir (opcional) */
       .like-btn {
         bottom: 10px !important;
         right: 10px !important;
@@ -168,51 +143,23 @@
         font-size: 16px !important;
       }
       
-      /* Garante que não haja espaçamento extra nas laterais e rodapé */
-      html, body {
-         margin: 0;
-         padding: 0;
-         width: 100%;
-         overflow-x: hidden;
-      }
-      .post, footer {
-         margin: 0 auto;
-         width: 100%;
-         max-width: 600px;
-         box-sizing: border-box;
-      }
-      footer {
-         padding: 10px 0;
-      }
+      /* Garante que não haja overflow horizontal */
+      html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
+      .post, footer { margin: 0 auto; width: 100%; max-width: 600px; box-sizing: border-box; }
+      footer { padding: 10px 0; }
       
-      /* --- Ajuste 2: Reposiciona o botão de Acessibilidade na versão mobile para evitar sobreposição --- */
-      #toggleAcessibilidade {
-        bottom: 70px; /* move-o um pouco para cima */
-      }
+      /* --- Ajuste 2: Reposiciona o botão de Acessibilidade para mobile --- */
+      #toggleAcessibilidade { bottom: 70px; }
     }
-
+    
+    /* Ajustes para telas muito pequenas (até 480px) */
     @media (max-width: 480px) {
-      /* Ajusta tamanhos e espaçamentos em telas muito pequenas */
-      nav ul li a {
-        font-size: 16px;
-        padding: 8px 10px;
-      }
-      h1 {
-        font-size: 24px;
-      }
-      h2 {
-        font-size: 20px;
-      }
-      h3 {
-        font-size: 18px;
-      }
-      .subscribe-button {
-        font-size: 14px;
-        padding: 8px 12px;
-      }
-      .comment p {
-        font-size: 14px;
-      }
+      nav ul li a { font-size: 16px; padding: 8px 10px; }
+      h1 { font-size: 24px; }
+      h2 { font-size: 20px; }
+      h3 { font-size: 18px; }
+      .subscribe-button { font-size: 14px; padding: 8px 12px; }
+      .comment p { font-size: 14px; }
     }
   </style>
   
@@ -268,12 +215,8 @@
       background-color: #ccc;
       cursor: not-allowed;
     }
-    .like-btn i {
-      margin-right: 8px;
-    }
-    .like-count {
-      font-size: 16px;
-    }
+    .like-btn i { margin-right: 8px; }
+    .like-count { font-size: 16px; }
     @keyframes shake {
       0% { transform: translateX(0); }
       25% { transform: translateX(-5px); }
@@ -298,14 +241,8 @@
       animation: particleAnim 1s ease-out forwards;
     }
     @keyframes particleAnim {
-      0% {
-        transform: scale(1) translate(0, 0);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(0) translate(0, -30px);
-        opacity: 0;
-      }
+      0% { transform: scale(1) translate(0, 0); opacity: 1; }
+      100% { transform: scale(0) translate(0, -30px); opacity: 0; }
     }
   </style>
   
@@ -322,24 +259,18 @@
       align-items: center;
       animation: bounce 2s infinite;
     }
-    #visitCount {
-      margin-left: 10px;
-    }
+    #visitCount { margin-left: 10px; }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
     @media screen and (max-width: 768px) {
-      #visitCounter {
-        font-size: 18px;
-        top: 10px;
-        left: 10px;
-      }
+      #visitCounter { font-size: 18px; top: 10px; left: 10px; }
     }
   </style>
   
   <!-- Fonte para update-box -->
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet" />
   
 </head>
 <body>
@@ -348,140 +279,140 @@
 
   <!-- Navegação -->
   <nav>
-      <ul>
-          <li><a href="index.html">Início</a></li>
-          <li><a href="Meu Site/noticias.html">Notícias</a></li>
-          <li><a href="Meu Site/sobre.html">Sobre</a></li>
-      </ul>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="Meu Site/noticias.html">Notícias</a></li>
+      <li><a href="Meu Site/sobre.html">Sobre</a></li>
+    </ul>
   </nav>
 
   <div class="content">
-      <!-- Conteúdo adicional se necessário -->
+    <!-- Conteúdo adicional se necessário -->
   </div>
 
   <!-- Cabeçalho -->
   <header style="text-align: center">
-      <h1>Gameniano Notícias</h1>
+    <h1>Gameniano Notícias</h1>
   </header>
   
   <!-- Vídeos e posts -->
   <div class="container" style="display: flex; justify-content: center; align-items: flex-start; margin-top: 20px;">
     <div class="content" style="flex: 2; padding: 20px; background: white; border-radius: 5px; text-align: center;">
-        <!-- Vídeo do YouTube -->
-        <div class="post">
-            <h2>Última Gameplay</h2>
-            <iframe width="560" height="315" 
-                src="https://www.youtube.com/embed/fP9o4Wfl6zY" 
-                frameborder="0" 
-                allowfullscreen>
-            </iframe>
-            <p>Confira minha última gameplay cheia de sustos e adrenalina!</p>
-            <a href="https://www.youtube.com/@Gameniano" class="subscribe-button youtube-button" 
-                style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: red; color: white; text-decoration: none; border-radius: 5px; position: relative; z-index: 1;">
-                Inscreva-se no meu canal!
-            </a>
-        </div>
+      <!-- Vídeo do YouTube -->
+      <div class="post">
+        <h2>Última Gameplay</h2>
+        <iframe width="560" height="315" 
+          src="https://www.youtube.com/embed/fP9o4Wfl6zY" 
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+        <p>Confira minha última gameplay cheia de sustos e adrenalina!</p>
+        <a href="https://www.youtube.com/@Gameniano" class="subscribe-button youtube-button" 
+           style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: red; color: white; text-decoration: none; border-radius: 5px; position: relative; z-index: 1;">
+          Inscreva-se no meu canal!
+        </a>
+      </div>
 
-        <!-- Vídeo do Kwai -->
-        <div class="post">
-            <h2>Vídeo no Kwai</h2>
-            <iframe width="560" height="315" 
-                src="https://www.kwai.com/embed/5195333750427505304" 
-                frameborder="0" 
-                allowfullscreen>
-            </iframe>
-            <p>Confira esse vídeo do meu Kwai com conteúdo exclusivo!</p>
-            <a href="https://www.kwai.com/@gameniano" class="subscribe-button kwai-button" 
-                style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: orange; color: white; text-decoration: none; border-radius: 5px; position: relative; z-index: 1;">
-                Seguir no Kwai
-            </a>
-        </div>
+      <!-- Vídeo do Kwai -->
+      <div class="post">
+        <h2>Vídeo no Kwai</h2>
+        <iframe width="560" height="315" 
+          src="https://www.kwai.com/embed/5195333750427505304" 
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+        <p>Confira esse vídeo do meu Kwai com conteúdo exclusivo!</p>
+        <a href="https://www.kwai.com/@gameniano" class="subscribe-button kwai-button" 
+           style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: orange; color: white; text-decoration: none; border-radius: 5px; position: relative; z-index: 1;">
+          Seguir no Kwai
+        </a>
+      </div>
 
-        <!-- Vídeo do TikTok -->
-        <div class="post">
-            <h2>Vídeo no TikTok</h2>
-            <iframe width="560" height="315" 
-                src="https://www.tiktok.com/embed/7470276746894380294" 
-                frameborder="0" 
-                allowfullscreen>
-            </iframe>
-            <p>Confira esse vídeo do meu TikTok com conteúdo exclusivo!</p>
-            <a href="https://www.tiktok.com/@gameniano" class="subscribe-button tiktok-button" 
-                style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: black; color: white; text-decoration: none; border-radius: 5px; position: relative; z-index: 1;">
-                Seguir no TikTok
-            </a>
-        </div>
+      <!-- Vídeo do TikTok -->
+      <div class="post">
+        <h2>Vídeo no TikTok</h2>
+        <iframe width="560" height="315" 
+          src="https://www.tiktok.com/embed/7470276746894380294" 
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+        <p>Confira esse vídeo do meu TikTok com conteúdo exclusivo!</p>
+        <a href="https://www.tiktok.com/@gameniano" class="subscribe-button tiktok-button" 
+           style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: black; color: white; text-decoration: none; border-radius: 5px; position: relative; z-index: 1;">
+          Seguir no TikTok
+        </a>
+      </div>
     </div>
   </div>
 
   <!-- Seção de Comentários -->
   <div class="post" style="background: #f0f0f0; border-radius: 5px; padding: 15px; margin-top: 20px;">
-      <h2>Comentários</h2>
-      <div class="comment" style="margin-bottom: 10px; padding: 10px 20px; background-color: #f0f8ff; border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 90%; margin-left: 5%; position: relative;">
-          <p style="font-weight: bold;">João:</p>
-          <p>Adorei a gameplay, estou apavorado hahaha!</p>
-          <div style="position: absolute; bottom: -10px; left: 10px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #f0f8ff;"></div>
-      </div>
-      <div class="comment" style="margin-bottom: 10px; padding: 10px 20px; background-color: #f0f8ff; border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 90%; margin-left: 5%; position: relative;">
-          <p style="font-weight: bold;">Ana:</p>
-          <p>Sempre me divirto com seus vídeos! Continue assim.</p>
-          <div style="position: absolute; bottom: -10px; left: 10px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #f0f8ff;"></div>
-      </div>
-      <a href="https://www.youtube.com/watch?v=fP9o4Wfl6zY" target="_blank" style="color: #007bff; font-weight: bold; text-decoration: none;">Ver mais comentários</a>
+    <h2>Comentários</h2>
+    <div class="comment" style="margin-bottom: 10px; padding: 10px 20px; background-color: #f0f8ff; border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 90%; margin-left: 5%; position: relative;">
+      <p style="font-weight: bold;">João:</p>
+      <p>Adorei a gameplay, estou apavorado hahaha!</p>
+      <div style="position: absolute; bottom: -10px; left: 10px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #f0f8ff;"></div>
+    </div>
+    <div class="comment" style="margin-bottom: 10px; padding: 10px 20px; background-color: #f0f8ff; border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 90%; margin-left: 5%; position: relative;">
+      <p style="font-weight: bold;">Ana:</p>
+      <p>Sempre me divirto com seus vídeos! Continue assim.</p>
+      <div style="position: absolute; bottom: -10px; left: 10px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #f0f8ff;"></div>
+    </div>
+    <a href="https://www.youtube.com/watch?v=fP9o4Wfl6zY" target="_blank" style="color: #007bff; font-weight: bold; text-decoration: none;">Ver mais comentários</a>
   </div>
 
   <!-- Notícias e Atualizações -->
   <div class="post" style="background: linear-gradient(135deg, #1e1e2e, #232340); border-radius: 10px; padding: 25px; margin-top: 20px; text-align: center; box-shadow: 0 0 20px rgba(0, 255, 157, 0.5); max-width: 600px; margin-left: auto; margin-right: auto;">
-      <h2 style="color: #0ff; font-size: 24px; margin-bottom: 10px;">📢 Notícias e Atualizações</h2>
-      <p style="color: #ddd; font-size: 18px; line-height: 1.6;">
-          🎮 Agora todos os dias tem <strong style="color: #0ff;">Live na Twitch às 21:00!</strong>  
-          Fique ligado para as novidades.
-      </p>
-      <p style="color: #aaa; font-size: 16px; margin-bottom: 20px;">
-          🔔 Acompanhe para não perder as lives!
-      </p>
-      <a href="https://www.twitch.tv/gameniano_" 
-         class="subscribe-button twitch-button"
-         style="display: inline-block; padding: 12px 25px; background: linear-gradient(135deg, #9146ff, #772ce8); color: white; text-decoration: none; font-size: 18px; font-weight: bold; border-radius: 8px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.7); transition: 0.3s ease-in-out;"
-         onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 25px rgba(145, 70, 255, 1)';"
-         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 15px rgba(145, 70, 255, 0.7)';">
-         🚀 Inscreva-se na minha Twitch!
-      </a>
+    <h2 style="color: #0ff; font-size: 24px; margin-bottom: 10px;">📢 Notícias e Atualizações</h2>
+    <p style="color: #ddd; font-size: 18px; line-height: 1.6;">
+      🎮 Agora todos os dias tem <strong style="color: #0ff;">Live na Twitch às 21:00!</strong>  
+      Fique ligado para as novidades.
+    </p>
+    <p style="color: #aaa; font-size: 16px; margin-bottom: 20px;">
+      🔔 Acompanhe para não perder as lives!
+    </p>
+    <a href="https://www.twitch.tv/gameniano_" 
+       class="subscribe-button twitch-button"
+       style="display: inline-block; padding: 12px 25px; background: linear-gradient(135deg, #9146ff, #772ce8); color: white; text-decoration: none; font-size: 18px; font-weight: bold; border-radius: 8px; box-shadow: 0 0 15px rgba(145, 70, 255, 0.7); transition: 0.3s ease-in-out;"
+       onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 25px rgba(145, 70, 255, 1)';"
+       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 15px rgba(145, 70, 255, 0.7)';">
+      🚀 Inscreva-se na minha Twitch!
+    </a>
   </div>
         
-  <!-- Milestone e Sidebar -->
+  <!-- Milestone e Sidebar – container com inline style (PC) -->
   <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 20px; position: absolute; top: 20px; left: 20px; right: 20px;">
-     <!-- Milestone -->
-     <div class="gameniano-milestone" style="background: #ffffff; color: #333; padding: 15px; border-radius: 15px; font-family: 'Arial', sans-serif; width: 150px; height: 1160px; box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out; border: 1px solid #f1f1f1; display: flex; flex-direction: column; justify-content: space-between;">
-         <h2 style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px; line-height: 1.4; text-align: center;">Ultrapassamos <span class="highlight" style="color: #c00;">140 mil</span> assinantes no YouTube!</h2>
-         <p class="author" style="font-size: 12px; color: #777; margin-bottom: 10px; text-align: center;">Por <strong>Sarah Alvares</strong>, <a href="https://www.mackenzie.br" target="_blank" style="color: #c00; text-decoration: none;">Jornalista formada pelo Mackenzie</a> - 13/02/2025</p>
-         <div class="social-links" style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 10px;">
-             <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.gameniano.com.br" target="_blank" class="social-icon" style="font-size: 12px; text-decoration: none; color: #fff; background-color: #3b5998; padding: 8px 12px; border-radius: 5px; transition: background-color 0.3s ease; text-align: center; width: 100%;">Compartilhar no Facebook</a>
-             <a href="#" onclick="copyLink(); return false;" class="social-icon" style="font-size: 12px; text-decoration: none; color: #fff; background-color: #c00; padding: 8px 12px; border-radius: 5px; transition: background-color 0.3s ease; text-align: center; width: 100%;">Copiar link</a>
-         </div>
-         <p style="font-size: 12px; line-height: 1.4; text-align: center;">Estamos felizes em compartilhar que ultrapassamos <strong>140 mil assinantes</strong> no canal <a href="https://www.youtube.com/@Gameniano" target="_blank" style="color: #c00;">Gameniano</a> no YouTube.</p>
-         <p style="font-size: 12px; line-height: 1.4; text-align: center;">Desde 2015, buscamos oferecer conteúdos autênticos e envolventes. Antes do YouTube, Gameniano explorou a <a href="#" style="color: #c00;">música</a>, <a href="#" style="color: #c00;">arte</a> e o <a href="#" style="color: #c00;">empreendedorismo</a>, mas foi no YouTube que encontrou sua verdadeira vocação.</p>
-         <blockquote style="background: #f4f4f4; padding: 10px; border-left: 5px solid #c00; font-style: italic; font-size: 12px; line-height: 1.4; text-align: center; margin-top: 10px;">
-           "Sonhos grandiosos começam como meros desejos, e a verdadeira conquista está em considerar aqueles que as tornam possíveis."
-         </blockquote>
-     </div>
+    <!-- Milestone -->
+    <div class="gameniano-milestone" style="background: #ffffff; color: #333; padding: 15px; border-radius: 15px; font-family: 'Arial', sans-serif; width: 150px; height: 1160px; box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out; border: 1px solid #f1f1f1; display: flex; flex-direction: column; justify-content: space-between;">
+      <h2 style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px; line-height: 1.4; text-align: center;">Ultrapassamos <span class="highlight" style="color: #c00;">140 mil</span> assinantes no YouTube!</h2>
+      <p class="author" style="font-size: 12px; color: #777; margin-bottom: 10px; text-align: center;">Por <strong>Sarah Alvares</strong>, <a href="https://www.mackenzie.br" target="_blank" style="color: #c00; text-decoration: none;">Jornalista formada pelo Mackenzie</a> - 13/02/2025</p>
+      <div class="social-links" style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.gameniano.com.br" target="_blank" class="social-icon" style="font-size: 12px; text-decoration: none; color: #fff; background-color: #3b5998; padding: 8px 12px; border-radius: 5px; transition: background-color 0.3s ease; text-align: center; width: 100%;">Compartilhar no Facebook</a>
+        <a href="#" onclick="copyLink(); return false;" class="social-icon" style="font-size: 12px; text-decoration: none; color: #fff; background-color: #c00; padding: 8px 12px; border-radius: 5px; transition: background-color 0.3s ease; text-align: center; width: 100%;">Copiar link</a>
+      </div>
+      <p style="font-size: 12px; line-height: 1.4; text-align: center;">Estamos felizes em compartilhar que ultrapassamos <strong>140 mil assinantes</strong> no canal <a href="https://www.youtube.com/@Gameniano" target="_blank" style="color: #c00;">Gameniano</a> no YouTube.</p>
+      <p style="font-size: 12px; line-height: 1.4; text-align: center;">Desde 2015, buscamos oferecer conteúdos autênticos e envolventes. Antes do YouTube, Gameniano explorou a <a href="#" style="color: #c00;">música</a>, <a href="#" style="color: #c00;">arte</a> e o <a href="#" style="color: #c00;">empreendedorismo</a>, mas foi no YouTube que encontrou sua verdadeira vocação.</p>
+      <blockquote style="background: #f4f4f4; padding: 10px; border-left: 5px solid #c00; font-style: italic; font-size: 12px; line-height: 1.4; text-align: center; margin-top: 10px;">
+        "Sonhos grandiosos começam como meros desejos, e a verdadeira conquista está em considerar aqueles que as tornam possíveis."
+      </blockquote>
+    </div>
 
-     <!-- Sidebar -->
-     <aside class="sidebar" style="background: #ffffff; border-radius: 15px; text-align: center; width: 150px; padding: 30px; box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1); border: 1px solid #f1f1f1;">
-         <h3 style="font-size: 20px; color: #333; margin-bottom: 20px;">Quem é o Gameniano?</h3>
-         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gameniano.png/600px-Gameniano.png?20250212073706" alt="Gameniano" class="profile-img" style="width: 120px; border-radius: 50%; margin-bottom: 20px;">
-         <p style="font-size: 16px; color: #333; line-height: 1.6;">Gameniano é um criador de conteúdo brasileiro, nascido em 11 de julho de 2000, com destaque no YouTube, onde cria gameplays de jogos de terror. Ele também compartilha seus conteúdos no TikTok, Twitch e outras plataformas, com foco em entretenimento e interação com seus fãs. Residente de São Paulo, além de criador de conteúdo e streamer, ele também atua como marketer.</p>
-         <h3 style="font-size: 20px; color: #333; margin-top: 25px;">Siga-me</h3>
-         <p style="font-size: 16px; line-height: 1.6;">
-             <a href="https://www.youtube.com/@Gameniano" style="color: #c00; text-decoration: none;">YouTube</a> |
-             <a href="https://www.tiktok.com/@gameniano" style="color: #c00; text-decoration: none;">TikTok</a> |
-             <a href="https://www.twitch.tv/gameniano_" style="color: #c00; text-decoration: none;">Twitch</a> |
-             <a href="https://kick.com/gameniano" style="color: #c00; text-decoration: none;">Kick</a>
-         </p>
-         <img src="https://graph.facebook.com/gameniano/picture?type=large" alt="Facebook Profile" style="width: 120px; border-radius: 50%; margin-top: 20px;">
-         <br>
-         <a href="https://www.facebook.com/gameniano" class="subscribe-button" style="background-color: #3b5998; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; margin-top: 20px;">Seguir no Facebook</a>
-     </aside>
+    <!-- Sidebar -->
+    <aside class="sidebar" style="background: #ffffff; border-radius: 15px; text-align: center; width: 150px; padding: 30px; box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1); border: 1px solid #f1f1f1;">
+      <h3 style="font-size: 20px; color: #333; margin-bottom: 20px;">Quem é o Gameniano?</h3>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gameniano.png/600px-Gameniano.png?20250212073706" alt="Gameniano" class="profile-img" style="width: 120px; border-radius: 50%; margin-bottom: 20px;" />
+      <p style="font-size: 16px; color: #333; line-height: 1.6;">Gameniano é um criador de conteúdo brasileiro, nascido em 11 de julho de 2000, com destaque no YouTube, onde cria gameplays de jogos de terror. Ele também compartilha seus conteúdos no TikTok, Twitch e outras plataformas, com foco em entretenimento e interação com seus fãs. Residente de São Paulo, além de criador de conteúdo e streamer, ele também atua como marketer.</p>
+      <h3 style="font-size: 20px; color: #333; margin-top: 25px;">Siga-me</h3>
+      <p style="font-size: 16px; line-height: 1.6;">
+        <a href="https://www.youtube.com/@Gameniano" style="color: #c00; text-decoration: none;">YouTube</a> |
+        <a href="https://www.tiktok.com/@gameniano" style="color: #c00; text-decoration: none;">TikTok</a> |
+        <a href="https://www.twitch.tv/gameniano_" style="color: #c00; text-decoration: none;">Twitch</a> |
+        <a href="https://kick.com/gameniano" style="color: #c00; text-decoration: none;">Kick</a>
+      </p>
+      <img src="https://graph.facebook.com/gameniano/picture?type=large" alt="Facebook Profile" style="width: 120px; border-radius: 50%; margin-top: 20px;" />
+      <br />
+      <a href="https://www.facebook.com/gameniano" class="subscribe-button" style="background-color: #3b5998; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; margin-top: 20px;">Seguir no Facebook</a>
+    </aside>
   </div>
 
   <script>
@@ -493,9 +424,9 @@
 
   <!-- Última Atualização -->
   <div class="update-container">
-      <div class="update-box">
-          Última atualização: <span id="last-modified">Carregando...</span>
-      </div>
+    <div class="update-box">
+      Última atualização: <span id="last-modified">Carregando...</span>
+    </div>
   </div>
 
   <script>
@@ -530,7 +461,7 @@
 
   <!-- Footer -->
   <footer style="text-align: center; padding: 10px; background: #222; color: white;">
-      <p>&copy; 2025 Gameniano - Todos os direitos reservados.</p>
+    <p>&copy; 2025 Gameniano - Todos os direitos reservados.</p>
   </footer>
 
   <!-- Botão de Curtir -->
@@ -638,9 +569,7 @@
     const visitCountDisplay = document.getElementById("visitCount");
 
     function handleVisit() {
-      if (localStorage.getItem("hasVisited")) {
-        return;
-      }
+      if (localStorage.getItem("hasVisited")) { return; }
       const visitCountRef = ref(database2, 'visits/total');
       get(visitCountRef).then((snapshot) => {
         if (snapshot.exists()) {
@@ -676,20 +605,23 @@
       synth.speak(fala);
     }
     document.addEventListener("DOMContentLoaded", function () {
-      // Se for mobile, excluímos o próprio botão de acessibilidade para não duplicar eventos
+      // Para mobile, adiciona também o evento "click" (além de "touchstart")
       const elementosParaLer = window.innerWidth < 768
         ? document.querySelectorAll("h1, h2, h3, p, a, input, textarea, label")
         : document.querySelectorAll("h1, h2, h3, p, a, button, input, textarea, label");
       const botaoToggle = document.getElementById("toggleAcessibilidade");
       elementosParaLer.forEach((elemento) => {
-        elemento.addEventListener("mouseenter", function () {
-          falarTexto(elemento.innerText);
-        });
         elemento.addEventListener("touchstart", function () {
           falarTexto(elemento.innerText);
         });
+        elemento.addEventListener("click", function () {
+          if (window.innerWidth < 768) {
+            falarTexto(elemento.innerText);
+          }
+        });
       });
-      botaoToggle.addEventListener("click", function () {
+      botaoToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
         acessibilidadeAtivada = !acessibilidadeAtivada;
         botaoToggle.innerText = acessibilidadeAtivada ? "🔇 Desativar Acessibilidade" : "🔊 Ativar Acessibilidade";
         synth.cancel();
