@@ -9,8 +9,8 @@
   <title>Gameniano Notícias</title>
   <link rel="icon" href="https://i.postimg.cc/2SnKzzCM/OUTROCONTROLE-removebg-preview.png" sizes="128x128" />
 
-  <!-- OBS.: Botão de Acessibilidade duplicado removido do head -->
-
+  <!-- Botão de Acessibilidade -->
+  <button id="toggleAcessibilidade">🔊 Acessibilidade</button>
   <style>
     /* Estilos do botão de acessibilidade */
     #toggleAcessibilidade {
@@ -132,17 +132,20 @@
         aspect-ratio: 16 / 9;
       }
       
-      /* Ajusta blocos com posição absoluta para padrão estático e centralizado */
+      /* --- Ajuste 1: Corrige a posição dos blocos Milestone e Sidebar na versão mobile --- */
       div[style*="position: absolute; top: 20px; left: 20px; right: 20px;"] {
         position: static !important;
+        left: 0 !important;
+        right: 0 !important;
         flex-direction: column !important;
-        margin: 0 auto 20px auto !important;
+        margin: 20px auto !important;
         padding: 0 10px;
         width: 100% !important;
         max-width: 600px;
         box-sizing: border-box;
       }
-      /* Unifica a largura dos blocos "Ultrapassamos 140 mil..." e "Quem é o Gameniano?" */
+      
+      /* Já os blocos individuais (Milestone e Sidebar) foram unificados para ocupar 100% */
       .gameniano-milestone, .sidebar {
         width: 100% !important;
         max-width: 600px !important;
@@ -180,6 +183,11 @@
       }
       footer {
          padding: 10px 0;
+      }
+      
+      /* --- Ajuste 2: Reposiciona o botão de Acessibilidade na versão mobile para evitar sobreposição --- */
+      #toggleAcessibilidade {
+        bottom: 70px; /* move-o um pouco para cima */
       }
     }
 
@@ -335,7 +343,7 @@
   
 </head>
 <body>
-  <!-- Botão de Acessibilidade (único, agora apenas no body) -->
+  <!-- Botão de Acessibilidade -->
   <button id="toggleAcessibilidade">🔊 Acessibilidade</button>
 
   <!-- Navegação -->
@@ -442,8 +450,7 @@
   </div>
         
   <!-- Milestone e Sidebar -->
-  <!-- Ajustado o container para remover o position: absolute e evitar que o bloco ultrapasse os limites do site -->
-  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin: 20px;">
+  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 20px; position: absolute; top: 20px; left: 20px; right: 20px;">
      <!-- Milestone -->
      <div class="gameniano-milestone" style="background: #ffffff; color: #333; padding: 15px; border-radius: 15px; font-family: 'Arial', sans-serif; width: 150px; height: 1160px; box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out; border: 1px solid #f1f1f1; display: flex; flex-direction: column; justify-content: space-between;">
          <h2 style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px; line-height: 1.4; text-align: center;">Ultrapassamos <span class="highlight" style="color: #c00;">140 mil</span> assinantes no YouTube!</h2>
@@ -669,7 +676,10 @@
       synth.speak(fala);
     }
     document.addEventListener("DOMContentLoaded", function () {
-      const elementosParaLer = document.querySelectorAll("h1, h2, h3, p, a, button, input, textarea, label");
+      // Se for mobile, excluímos o próprio botão de acessibilidade para não duplicar eventos
+      const elementosParaLer = window.innerWidth < 768
+        ? document.querySelectorAll("h1, h2, h3, p, a, input, textarea, label")
+        : document.querySelectorAll("h1, h2, h3, p, a, button, input, textarea, label");
       const botaoToggle = document.getElementById("toggleAcessibilidade");
       elementosParaLer.forEach((elemento) => {
         elemento.addEventListener("mouseenter", function () {
