@@ -511,3 +511,62 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Responsivo</title>
+    <style>
+        /* Estilos padrão para PC */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white; /* Cor padrão */
+            color: black; /* Cor padrão */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        /* Responsividade: ajustes apenas para telas menores */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 20px;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bem-vindo ao meu site responsivo</h1>
+        <p>Esse site se ajusta automaticamente para qualquer tamanho de tela.</p>
+    </div>
+</body>
+
+</html>
