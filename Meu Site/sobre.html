@@ -20,76 +20,90 @@
         }
         .hero {
             background: url('https://i.postimg.cc/jjB7PLxC/channels4-banner.jpg') center/cover no-repeat;
-            height: 60vh;
+            height: 50vh;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            padding: 20px;
         }
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin: 0;
         }
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 300;
         }
         .content {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 20px;
-            padding: 50px;
+            padding: 30px;
         }
         .content img {
-            width: 400px;
+            width: 100%;
+            max-width: 300px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
         .text {
-            max-width: 600px;
-            text-align: left;
+            max-width: 90%;
+            text-align: center;
         }
         .mission, .impact, .contact {
-            padding: 50px;
+            padding: 40px;
             background: rgba(255, 255, 255, 0.1);
             margin: 20px auto;
             border-radius: 10px;
-            width: 80%;
+            width: 90%;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
         .contact form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            max-width: 400px;
-            margin: auto;
+            gap: 15px;
+            max-width: 100%;
         }
         .contact input, .contact textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border-radius: 5px;
             border: none;
             font-size: 1rem;
-            box-sizing: border-box; /* Inclui padding no cálculo da largura */
+            box-sizing: border-box;
         }
         .contact button {
             background-color: #ff4500;
             color: #fff;
-            padding: 10px;
+            padding: 12px;
             font-size: 1rem;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            width: 100%; /* Garante que o botão ocupe toda a largura */
-            box-sizing: border-box; /* Garante que o botão se alinhe corretamente com os campos de preenchimento */
+            width: 100%;
+            box-sizing: border-box;
         }
         footer {
             background: #1f1f1f;
-            padding: 20px;
+            padding: 15px;
             font-size: 0.9rem;
+        }
+
+        @media (min-width: 768px) {
+            .content {
+                flex-direction: row;
+                text-align: left;
+                max-width: 90%;
+                margin: auto;
+            }
+            .text {
+                max-width: 600px;
+            }
         }
     </style>
 </head>
@@ -119,177 +133,18 @@
         <p>Com milhares de leitores diários, o Gameniano influencia e informa a comunidade gamer, trazendo as tendências mais quentes do mundo dos jogos.</p>
     </section>
     
- <section class="contact">
-    <h2>Entre em Contato</h2>
-    <form action="https://formspree.io/f/mgvolbyv" method="POST">
-        <input type="text" name="name" placeholder="Seu Nome" required>
-        <input type="email" name="email" placeholder="Seu E-mail" required>
-        <textarea name="message" placeholder="Sua Mensagem" rows="5" required></textarea>
-        <button type="submit">Enviar</button>
-    </form>
-</section>
+    <section class="contact">
+        <h2>Entre em Contato</h2>
+        <form action="https://formspree.io/f/mgvolbyv" method="POST">
+            <input type="text" name="name" placeholder="Seu Nome" required>
+            <input type="email" name="email" placeholder="Seu E-mail" required>
+            <textarea name="message" placeholder="Sua Mensagem" rows="5" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
     
     <footer>
         <p>&copy; 2025 Gameniano. Todos os direitos reservados.</p>
     </footer>
-</body>
-    <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movimento Fluído do Bichinho</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: auto; /* Permite rolar a página */
-    }
-
-    .bichinho {
-      position: absolute;
-      width: 50px; /* Tamanho do bichinho */
-      height: 50px;
-      background-image: url('https://i.postimg.cc/N0HjcVby/Duck.gif'); /* Caminho do seu GIF */
-      background-size: cover;
-      display: none; /* Inicialmente escondido */
-      transition: opacity 1s ease-out; /* Transição suave de opacidade */
-    }
-  </style>
-</head>
-<body>
-  <div class="bichinho"></div>
-
-  <script>
-    const bichinho = document.querySelector('.bichinho');
-
-    // Função para gerar uma posição aleatória
-    function getRandomPosition() {
-      const x = Math.random() * (window.innerWidth - 50);  // Largura da tela
-      const y = Math.random() * (window.innerHeight - 50); // Altura da tela
-      return { x, y };
-    }
-
-    // Função para mover o bichinho
-    function moveBichinho() {
-      const { x, y } = getRandomPosition();  // Posição aleatória
-      bichinho.style.left = `${x}px`;
-      bichinho.style.top = `${y}px`;
-      bichinho.style.display = 'block'; // Exibe o bichinho
-
-      // Começa o movimento do bichinho
-      moveBichinhoSmoothly(x, y);
-
-      // Após 15 segundos, inicia a animação de desaparecer suavemente
-      setTimeout(() => {
-        bichinho.style.opacity = 0;
-      }, 15000); // Começa a desaparecer após 15 segundos
-
-      // Esconde o bichinho completamente após desaparecer
-      setTimeout(() => {
-        bichinho.style.display = 'none';
-        bichinho.style.opacity = 1; // Restaura a opacidade para a próxima exibição
-      }, 16000); // Esconde após 16 segundos
-    }
-
-    // Função para mover o bichinho suavemente até o destino
-    function moveBichinhoSmoothly(startX, startY) {
-      const endX = Math.random() * (window.innerWidth - 50); // Novo ponto final no eixo X
-      const endY = Math.random() * (window.innerHeight - 50); // Novo ponto final no eixo Y
-
-      const duration = 10000; // Duração do movimento (10 segundos)
-
-      let startTime;
-
-      // Função de animação
-      function animate(time) {
-        if (!startTime) startTime = time;
-        const progress = (time - startTime) / duration;
-
-        if (progress < 1) {
-          // Calcula a posição intermediária com base na progressão
-          const x = startX + (endX - startX) * progress;
-          const y = startY + (endY - startY) * progress;
-          bichinho.style.left = `${x}px`;
-          bichinho.style.top = `${y}px`;
-
-          requestAnimationFrame(animate);
-        } else {
-          // Após o movimento, redefine a posição final
-          bichinho.style.left = `${endX}px`;
-          bichinho.style.top = `${endY}px`;
-          moveBichinhoSmoothly(endX, endY); // Inicia outro movimento
-        }
-      }
-
-      requestAnimationFrame(animate); // Inicia a animação
-    }
-
-    // Chama a função de mover o bichinho em intervalos aleatórios
-    setInterval(moveBichinho, Math.random() * 20000 + 15000); // Aparece a cada 15 a 35 segundos
-
-    // Função para quando o bichinho for clicado
-    bichinho.addEventListener('click', function() {
-      bichinho.style.transition = "transform 0.5s ease";
-      bichinho.style.transform = `scale(1.5)`;  // O bichinho vai aumentar de tamanho
-      setTimeout(() => {
-        bichinho.style.transform = `scale(1)`;  // E depois volta ao tamanho original
-      }, 500);
-    });
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botão de Início</title>
-    <style>
-        /* Botão flutuante de voltar para o início */
-        .home-button {
-            position: fixed;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, #121212, #232323);
-            color: #0ff;
-            font-family: "Rajdhani", sans-serif;
-            padding: 12px 18px;
-            border-radius: 50px;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-            border: 2px solid #0ff;
-            font-size: 16px;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-        }
-
-        .home-button:hover {
-            background: #0ff;
-            color: #121212;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 1);
-            transform: translateY(-50%) scale(1.1);
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <!-- Botão flutuante para voltar ao início -->
-    <a href="https://www.gameniano.com.br/" class="home-button">🏠 Início</a>
-
-</body>
-    <!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=1024, initial-scale=0.0, maximum-scale=10.0, user-scalable=no">
-    <title>Site Responsivo</title>
-</head>
-<body>
-    <!-- Seu conteúdo vai aqui -->
 </body>
 </html>
