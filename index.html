@@ -96,7 +96,7 @@
     }
   </style>
   
-  <!-- Responsividade (ajustes para telas menores) -->
+  <!-- Responsividade e ajustes mobile -->
   <style>
     @media (max-width: 768px) {
       /* Empilha os itens do menu */
@@ -108,14 +108,20 @@
         margin: 10px 0;
       }
       
-      /* Ajusta o container principal para coluna */
+      /* Container principal e blocos */
       .container {
         flex-direction: column;
         align-items: center;
-        margin: 20px auto;
+        margin: 0 auto;
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
       }
       .content, .sidebar {
-        width: 90%;
+        width: 100% !important;
+        max-width: 600px;
+        padding: 0 10px;
+        box-sizing: border-box;
       }
       
       /* Iframes responsivos mantendo a proporção 16:9 */
@@ -125,19 +131,17 @@
         aspect-ratio: 16 / 9;
       }
       
-      /* Ajusta o container com posição absoluta (milestone e sidebar) */
+      /* Ajusta blocos com posição absoluta para padrão estático e centralizado */
       div[style*="position: absolute; top: 20px; left: 20px; right: 20px;"] {
         position: static !important;
         flex-direction: column !important;
         margin: 20px 10px !important;
       }
       .gameniano-milestone, .sidebar {
-        /* Alteração: largura unificada para mobile */
-        width: 90% !important;
+        width: 100% !important;
         max-width: 600px !important;
         margin: 0 auto 20px auto !important;
       }
-      /* Remove a altura fixa da milestone para permitir ajuste automático */
       .gameniano-milestone {
         height: auto !important;
       }
@@ -153,6 +157,27 @@
         right: 10px !important;
         min-width: 100px !important;
         font-size: 16px !important;
+      }
+      
+      /* Novos ajustes para uma visualização moderna e sem espaços indesejados */
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .post {
+        margin: 10px 0;
+      }
+      .comment {
+        max-width: 100% !important;
+        margin: 10px 0 !important;
+        padding: 10px !important;
+        box-sizing: border-box;
+      }
+      footer {
+        width: 100%;
+        margin: 0;
+        padding: 10px 0;
+        box-sizing: border-box;
       }
     }
 
@@ -414,7 +439,7 @@
       </a>
   </div>
         
-  <!-- Milestone e Sidebar (container com posição absoluta, ajustado via media query para mobile) -->
+  <!-- Milestone e Sidebar (ajustados para mobile via media query) -->
   <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 20px; position: absolute; top: 20px; left: 20px; right: 20px;">
      <!-- Milestone -->
      <div class="gameniano-milestone" style="background: #ffffff; color: #333; padding: 15px; border-radius: 15px; font-family: 'Arial', sans-serif; width: 150px; height: 1160px; box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out; border: 1px solid #f1f1f1; display: flex; flex-direction: column; justify-content: space-between;">
