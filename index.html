@@ -12,6 +12,7 @@
   <!-- Botão de Acessibilidade -->
   <button id="toggleAcessibilidade">🔊 Acessibilidade</button>
   <style>
+    /* Estilos do botão de acessibilidade */
     #toggleAcessibilidade {
       position: fixed;
       left: 10px;
@@ -98,7 +99,7 @@
   <!-- Responsividade (ajustes para telas menores) -->
   <style>
     @media (max-width: 768px) {
-      /* Navegação: empilhar os itens */
+      /* Empilha os itens do menu */
       nav ul {
         display: block;
       }
@@ -107,23 +108,24 @@
         margin: 10px 0;
       }
       
-      /* Container principal: mudança para coluna */
+      /* Ajusta o container principal para coluna */
       .container {
         flex-direction: column;
         align-items: center;
+        margin: 20px auto;
       }
       .content, .sidebar {
         width: 90%;
       }
       
-      /* Iframes dos vídeos: ocupar 100% da largura mantendo a proporção 16:9 */
+      /* Iframes responsivos mantendo a proporção 16:9 */
       .post iframe {
         width: 100% !important;
         height: auto !important;
         aspect-ratio: 16 / 9;
       }
       
-      /* Ajuste no container absoluto (milestone e sidebar) */
+      /* Ajusta o container com posição absoluta (milestone e sidebar) */
       div[style*="position: absolute; top: 20px; left: 20px; right: 20px;"] {
         position: static !important;
         flex-direction: column !important;
@@ -133,18 +135,46 @@
         width: 100% !important;
         margin: 0 auto 20px auto !important;
       }
+      /* Remove a altura fixa da milestone para permitir ajuste automático */
+      .gameniano-milestone {
+        height: auto !important;
+      }
       
-      /* Update container */
+      /* Reduz o padding do update-container */
       .update-container {
         padding: 10px !important;
       }
       
-      /* Botão de Curtir */
+      /* Ajusta o botão de curtir */
       .like-btn {
         bottom: 10px !important;
         right: 10px !important;
         min-width: 100px !important;
         font-size: 16px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Ajusta tamanhos e espaçamentos em telas muito pequenas */
+      nav ul li a {
+        font-size: 16px;
+        padding: 8px 10px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      h3 {
+        font-size: 18px;
+      }
+      .subscribe-button {
+        font-size: 14px;
+        padding: 8px 12px;
+      }
+      .comment p {
+        font-size: 14px;
       }
     }
   </style>
@@ -382,7 +412,7 @@
       </a>
   </div>
         
-  <!-- Milestone e Sidebar (container com posição absoluta) -->
+  <!-- Milestone e Sidebar (container com posição absoluta, ajustado via media query para mobile) -->
   <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 20px; position: absolute; top: 20px; left: 20px; right: 20px;">
      <!-- Milestone -->
      <div class="gameniano-milestone" style="background: #ffffff; color: #333; padding: 15px; border-radius: 15px; font-family: 'Arial', sans-serif; width: 150px; height: 1160px; box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out; border: 1px solid #f1f1f1; display: flex; flex-direction: column; justify-content: space-between;">
