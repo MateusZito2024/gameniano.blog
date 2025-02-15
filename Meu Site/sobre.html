@@ -25,7 +25,6 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
             padding: 20px;
         }
         .hero h1 {
@@ -41,12 +40,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 20px;
             padding: 30px;
         }
         .content img {
-            width: 100%;
+            width: 90%;
             max-width: 300px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
@@ -54,24 +51,25 @@
         .text {
             max-width: 90%;
             text-align: center;
+            margin-top: 20px;
         }
         .mission, .impact, .contact {
-            padding: 40px;
+            padding: 30px;
             background: rgba(255, 255, 255, 0.1);
             margin: 20px auto;
             border-radius: 10px;
             width: 90%;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
         .contact form {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            max-width: 100%;
+            max-width: 90%;
+            margin: auto;
         }
         .contact input, .contact textarea {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border-radius: 5px;
             border: none;
             font-size: 1rem;
@@ -80,28 +78,26 @@
         .contact button {
             background-color: #ff4500;
             color: #fff;
-            padding: 12px;
+            padding: 10px;
             font-size: 1rem;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
-            box-sizing: border-box;
         }
         footer {
             background: #1f1f1f;
-            padding: 15px;
+            padding: 20px;
             font-size: 0.9rem;
         }
-
         @media (min-width: 768px) {
             .content {
                 flex-direction: row;
-                text-align: left;
-                max-width: 90%;
-                margin: auto;
+                justify-content: center;
+                gap: 20px;
             }
             .text {
+                text-align: left;
                 max-width: 600px;
             }
         }
@@ -110,7 +106,7 @@
 <body>
     <header>
         <div class="hero">
-            <h1>Sobre o Gameniano Notícias</h1>
+            <h1>Sobre o Gameniano</h1>
             <p>O portal definitivo para os apaixonados por games e notícias do mundo geek.</p>
         </div>
     </header>
@@ -119,23 +115,23 @@
         <img src="https://i.postimg.cc/gcZ1p89B/Foto-perfil.png" alt="Gameniano">
         <div class="text">
             <h2>História</h2>
-            <p>O Gameniano nasceu da paixão por videogames e notícias geek. Agora sendo também um portal dedicado a trazer informações precisas, análises detalhadas e curiosidades para a comunidade gamer e entusiastas da cultura pop.</p>
+            <p>O Gameniano nasceu da paixão por videogames e notícias geek...</p>
         </div>
     </section>
     
     <section class="mission">
         <h2>Missão</h2>
-        <p>O objetivo é oferecer conteúdos atualizados e relevantes, conectando gamers e fãs de cultura geek com as últimas novidades do setor.</p>
+        <p>O objetivo é oferecer conteúdos atualizados e relevantes...</p>
     </section>
     
     <section class="impact">
         <h2>Impacto</h2>
-        <p>Com milhares de leitores diários, o Gameniano influencia e informa a comunidade gamer, trazendo as tendências mais quentes do mundo dos jogos.</p>
+        <p>Com milhares de leitores diários, o Gameniano influencia...</p>
     </section>
     
     <section class="contact">
         <h2>Entre em Contato</h2>
-        <form action="https://formspree.io/f/mgvolbyv" method="POST">
+        <form action="#" method="POST">
             <input type="text" name="name" placeholder="Seu Nome" required>
             <input type="email" name="email" placeholder="Seu E-mail" required>
             <textarea name="message" placeholder="Sua Mensagem" rows="5" required></textarea>
