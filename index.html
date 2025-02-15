@@ -295,6 +295,25 @@
   
   <!-- Fonte para update-box -->
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- 
+    Adição para PC: 
+    O container que engloba a Milestone e a Sidebar está posicionado de forma absoluta e pode
+    estar sobrepondo o vídeo do YouTube. Com essa regra, fazemos com que ele não capture cliques
+    (pointer-events: none), exceto em seus elementos filhos (que recebem pointer-events: auto)
+    para não comprometer sua funcionalidade.
+  -->
+  <style>
+    @media (min-width: 769px) {
+      div[style*="position: absolute;"][style*="left: 20px;"][style*="right: 20px;"] {
+        pointer-events: none;
+      }
+      .gameniano-milestone,
+      .sidebar {
+        pointer-events: auto;
+      }
+    }
+  </style>
   
 </head>
 <body>
